@@ -1,23 +1,6 @@
+import './node_modules/vl-ui-core/vl-core.src.js';
+
 (() => {
-    const id = 'vl-checkbox-style';
-    addStyle();
-
-    function addStyle() {
-        if (!document.head.querySelector('#' + id)) {
-            var style = getStyle();
-            document.head.appendChild(style);
-        }
-    }
-
-    function getStyle() {
-        var link = document.createElement('link');
-        link.setAttribute('id', id);
-        link.setAttribute('rel', 'stylesheet');
-        link.setAttribute('type', 'text/css');
-        link.setAttribute('href', '../style.css');
-        return link;
-    }
-
     const template = document.createElement('template');
 
     template.innerHTML = `

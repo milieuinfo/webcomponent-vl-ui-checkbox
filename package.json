@@ -1,6 +1,6 @@
 {
   "name": "vl-ui-checkbox",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit een lijst. Gebruik de checkbox in formulieren.",
   "main": "vl-ui-checkbox.js",
   "author": "DIDM",
@@ -30,21 +30,28 @@
     "prepare:font:vlaanderen-icon": "replace '/font/vlaanderen-icon.woff' 'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/vlaanderen-icon.woff' style.css",
     "test": "wct -l chrome,firefox --npm",
     "release": "np",
-    "release:prepare": "replace '../style.css' https://cdn.milieuinfo.be/vl-ui-checkbox/$release_version/style.css vl-checkbox.js && git add vl-checkbox.js && git commit --amend --no-edit && git pull",
-    "release:testless": "np --yolo"
+    "release:prepare": "npm run release:prepare:update && npm run release:prepare:css && npm run release:prepare:core && npm run release:prepare:commit",
+    "release:prepare:update": "git fetch && git pull",
+    "release:prepare:css": "replace '../style.css' https://cdn.milieuinfo.be/vl-ui-checkbox/$release_version/style.css vl-checkbox.js",
+    "release:prepare:core": "replace './node_modules/vl-ui-core/vl-core.src.js' https://cdn.milieuinfo.be/vl-ui-checkbox/$release_version/node_modules/vl-ui-core/vl-core.js vl-checkbox.js",
+    "release:prepare:commit": "git add vl-checkbox.js && git commit --amend --no-edit && git pull",
+    "release:testless": "np --yolo",
+    "demo": "http-server"
   },
   "dependencies": {
     "@govflanders/vl-ui-checkbox": "3.7.2",
     "@govflanders/vl-ui-core": "3.7.2",
     "@govflanders/vl-ui-form-message": "3.7.2",
     "@govflanders/vl-ui-form-structure": "3.7.2",
-    "@govflanders/vl-ui-util": "3.7.2"
+    "@govflanders/vl-ui-util": "3.7.2",
+    "vl-ui-core": "0.0.1"
   },
   "devDependencies": {
     "wct-browser-legacy": "1.0.2",
     "web-component-tester": "6.9.2",
     "replace": "1.0.0",
     "np": "3.0.4",
-    "uglify-js-es6": "2.8.9"
+    "uglify-js-es6": "2.8.9",
+    "http-server": "0.11.1"
   }
 }

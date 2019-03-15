@@ -6,6 +6,11 @@ De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit ee
 npm install --save vl-ui-checkbox
 ```
 
+## demo
+```
+npm run demo
+```
+
 ## Credits
 Zie de lijst van [ontwikkelaars](https://github.com/milieuinfo/webcomponent-vl-ui-checkbox/graphs/contributors) die meegewerkt hebben aan de webcomponent.
 
