@@ -15,7 +15,7 @@
   },
   "scripts": {
     "prepare": "npm run prepare:util && npm run prepare:build",
-    "prepare:util": "npm explore vl-ui-util -- npm run install",
+    "prepare:util": "npm explore vl-ui-util -- npm run util",
     "prepare:build": "uglifyjs --compress --mangle --output vl-checkbox.js -- *.src.js",
     "test": "wct -l chrome,firefox --npm",
     "release": "np",
