@@ -1,6 +1,6 @@
 (()=>{const e=document.createElement("template");e.innerHTML=`
         <style>
-          @import '../style.css';
+          @import 'https://cdn.milieuinfo.be/vl-ui-checkbox/0.0.1/style.css';
         </style>
 
         <label class="vl-checkbox" for="checkbox">
