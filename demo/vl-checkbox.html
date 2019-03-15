@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>vl-checkbox voorbeeld</title>
+    </head>
+    
+    <script src="../vl-checkbox.src.js"></script>
+
+    <style>
+        body {
+            padding: 1.5rem;
+            width: 1250px;
+        }
+
+        div:not(:first-child) {
+            margin-top: 3rem;
+        }
+    </style>
+
+	<body>
+        <div>
+            <vl-checkbox label="Optie 1"></vl-checkbox>
+            <vl-checkbox label="Optie 1" checked></vl-checkbox>
+        </div>
+        <div>
+            <vl-checkbox label="Optie 2" block></vl-checkbox>
+        </div>
+        <div>
+            <vl-checkbox label="Optie 3" error></vl-checkbox>
+        </div>
+        <div>
+            <vl-checkbox label="Optie 4" disabled></vl-checkbox>
+        </div>
+        <div>
+            <vl-checkbox label="Optie 5" single></vl-checkbox>
+        </div>
+        <div>
+            <vl-checkbox switch></vl-checkbox>
+        </div>
+        <div>
+            <vl-checkbox switch disabled></vl-checkbox>
+        </div>
+        <div id="opties_1">
+            <vl-checkbox label="Optie 1" value="1" checked="[]"></vl-checkbox>
+            <vl-checkbox label="Optie 2" value="2" checked="[]"></vl-checkbox>
+            <vl-checkbox label="Optie 3" value="3" checked="[]"></vl-checkbox>
+        </div>
+        <div id="opties_2">
+            <vl-checkbox label="Optie 1" value="1" checked="[2,3]"></vl-checkbox>
+            <vl-checkbox label="Optie 2" value="2" checked="[2,3]"></vl-checkbox>
+            <vl-checkbox label="Optie 3" value="3" checked="[2,3]"></vl-checkbox>
+        </div>
+    </body>
+</html>
