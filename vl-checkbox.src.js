@@ -102,7 +102,7 @@ import './node_modules/vl-ui-core/vl-core.src.js';
             } else {
                 checked = this.checked;
             }
-            this.dispatchEvent(new CustomEvent('input', { detail: checked }));
+            this.dispatchEvent(new CustomEvent('input', { detail: checked, bubbles: true, composed: true }));
         }
 
         _labelChangedCallback(value) {

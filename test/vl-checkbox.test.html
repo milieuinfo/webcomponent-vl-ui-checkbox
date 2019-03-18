@@ -117,6 +117,30 @@
           assert.isFalse(checkboxInput.checked);
         });
 
+        test('het klikken op het input veld zal een event gooien met de waarde van het boolean checked attribuut', (done) => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          const checkboxInput = checkbox.shadowRoot.querySelector('input');
+          checkbox.addEventListener('input', (e) => {
+            if (e.detail) {
+              assert.isTrue(e.detail);
+              done();
+            }
+          });
+          checkboxInput.click();
+        });
+
+        test('toggle zal een event gooien met de waarde van het boolean checked attribuut', (done) => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          const checkboxInput = checkbox.shadowRoot.querySelector('input');
+          checkbox.addEventListener('input', (e) => {
+            if (e.detail) {
+              assert.isTrue(e.detail);
+              done();
+            }
+          });
+          checkbox.toggle();
+        });
+
         test('het klikken op het input veld zal de checkbox checked waarde toevoegen aan of verwijderen van het checked attribuut bij een checkbox met een array attribuut', () => {
           const checkboxes = fixture('vl-checkboxes-fixture');
           const checkbox = checkboxes[0];
@@ -145,6 +169,35 @@
           checkbox.toggle();
           assert.isFalse(checkboxInput.checked);
           assert.isFalse(JSON.parse(checkbox.getAttribute('checked')).includes(1));
+        });
+
+
+        test('het klikken op het input veld zal een event gooien met het array checked attribuut bij een checkbox met een array checked attribuut', (done) => {
+          const checkboxes = fixture('vl-checkboxes-fixture');
+          const checkbox = checkboxes[0];
+          const checkboxInput = checkbox.shadowRoot.querySelector('input');
+          checkbox.setAttribute('checked', '[2,3]');
+          checkbox.addEventListener('input', (e) => {
+            if (e.detail) {
+              assert.isTrue(JSON.parse(checkbox.getAttribute('checked')).includes(1));
+              done();
+            }
+          });
+          checkboxInput.click();
+        });
+
+        test('toggle zal een event gooien met het array checked attribuut bij een checkbox met een array checked attribuut', (done) => {
+          const checkboxes = fixture('vl-checkboxes-fixture');
+          const checkbox = checkboxes[0];
+          const checkboxInput = checkbox.shadowRoot.querySelector('input');
+          checkbox.setAttribute('checked', '[2,3]');
+          checkbox.addEventListener('input', (e) => {
+            if (e.detail) {
+              assert.isTrue(JSON.parse(checkbox.getAttribute('checked')).includes(1));
+              done();
+            }
+          });
+          checkbox.toggle();
         });
       });
     </script> 
