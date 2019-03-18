@@ -1,6 +1,6 @@
-import"./node_modules/vl-ui-core/vl-core.src.js";(()=>{const e=document.createElement("template");e.innerHTML=`
+import"https://cdn.milieuinfo.be/vl-ui-checkbox/0.0.2/node_modules/vl-ui-core/vl-core.js";(()=>{const e=document.createElement("template");e.innerHTML=`
         <style>
-          @import '../style.css';
+          @import 'https://cdn.milieuinfo.be/vl-ui-checkbox/0.0.2/style.css';
         </style>
 
         <label class="vl-checkbox" for="checkbox">
