@@ -26,11 +26,6 @@
       suite('<vl-checkbox>', () => {
         const should = chai.should();
 
-        test('heeft de vl-checkbox class', () => {
-          const checkbox = fixture('vl-checkbox-fixture');
-          assert.isTrue(checkbox.classList.contains('vl-checkbox'));
-        });
-
         test('krijgt de juiste class wanneer de knop een attribuut bevat', () => {
           const checkbox = fixture('vl-checkbox-fixture');
           const checkboxLabel = checkbox.shadowRoot.querySelector('.vl-checkbox');
