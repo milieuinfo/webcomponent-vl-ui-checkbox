@@ -1,4 +1,4 @@
-# ${1:vl-checkbox}
+# vl-checkbox
 De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit een lijst. Gebruik de checkbox in formulieren.
 
 ## Installation

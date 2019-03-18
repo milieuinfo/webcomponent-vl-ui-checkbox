@@ -5,7 +5,7 @@ import './node_modules/vl-ui-core/vl-core.src.js';
 
     template.innerHTML = `
         <style>
-          @import '../style.css';
+            @import '../style.css';
         </style>
 
         <label class="vl-checkbox" for="checkbox">
@@ -40,12 +40,11 @@ import './node_modules/vl-ui-core/vl-core.src.js';
             this._shadowRoot = this.attachShadow({ 'mode': 'open' });
             this._shadowRoot.appendChild(template.content.cloneNode(true));
             this._labelElement = this._shadowRoot.querySelector('.vl-checkbox');
-            this._inputElement = this.shadowRoot.querySelector('input');
+            this._inputElement = this._shadowRoot.querySelector('input');
             this._checkboxLabelElement = this._labelElement.querySelector('.vl-checkbox__label');
         }
 
         connectedCallback() {
-            this.classList.add('vl-checkbox');
             this._inputElement.onchange = this._toggle;
         }
 
