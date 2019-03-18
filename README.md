@@ -6,7 +6,7 @@ De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit ee
 npm install --save vl-ui-checkbox
 ```
 
-## demo
+## Demo
 ```
 npm run demo
 ```
