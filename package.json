@@ -22,7 +22,7 @@
     "release:prepare": "npm run release:prepare:update && npm run release:prepare:css && npm run release:prepare:core && npm run release:prepare:commit",
     "release:prepare:update": "git fetch && git pull",
     "release:prepare:css": "replace '\\.\\./style.css' https://cdn.milieuinfo.be/vl-ui-checkbox/$release_version/style.css vl-checkbox.js",
-    "release:prepare:core": "replace './node_modules/vl-ui-core/vl-core.src.js' https://cdn.milieuinfo.be/vl-ui-checkbox/$release_version/node_modules/vl-ui-core/vl-core.js vl-checkbox.js",
+    "release:prepare:core": "replace './node_modules/vl-ui-core/vl-core.src.js' 'https://cdn.milieuinfo.be/vl-ui-core/1.1.0/vl-core.js' vl-checkbox.js",
     "release:prepare:commit": "git add vl-checkbox.js && git commit --amend --no-edit && git pull",
     "release:testless": "np --yolo",
     "demo": "http-server"
