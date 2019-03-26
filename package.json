@@ -1,6 +1,6 @@
 {
   "name": "vl-ui-checkbox",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit een lijst. Gebruik de checkbox in formulieren.",
   "main": "vl-ui-checkbox.js",
   "author": "DIDM",
@@ -31,7 +31,8 @@
     "@govflanders/vl-ui-core": "3.7.2",
     "@govflanders/vl-ui-form-message": "3.7.2",
     "@govflanders/vl-ui-form-structure": "3.7.2",
-    "@govflanders/vl-ui-util": "3.7.2"
+    "@govflanders/vl-ui-util": "3.7.2",
+    "vl-ui-core": "1.0.0"
   },
   "peerDependencies": {
     "vl-ui-core": "1.0.0"
