@@ -1,4 +1,4 @@
-import{VlElement}from"https://cdn.milieuinfo.be/vl-ui-core/1.1.0/vl-core.js";export class VlCheckbox extends VlElement(HTMLElement){static get _observedAttributes(){return["label","value","checked"]}static get _observedChildClassAttributes(){return["block","single","disabled","error","switch"]}constructor(){super(`
+import{VlElement}from"https://cdn.milieuinfo.be/vl-ui-core/1.0.0/vl-core.js";export class VlCheckbox extends VlElement(HTMLElement){static get _observedAttributes(){return["label","value","checked"]}static get _observedChildClassAttributes(){return["block","single","disabled","error","switch"]}constructor(){super(`
             <style>
                 @import 'https://cdn.milieuinfo.be/vl-ui-checkbox/1.0.0/style.css';
             </style>
