@@ -4,6 +4,15 @@ import { VlElement } from '/node_modules/vl-ui-core/vl-core.src.js';
  * `vl-checkbox``
  * De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit een lijst. Gebruik de checkbox in formulieren.
  * 
+ * ### Attributen
+ * Attribuut | Uitleg | Waarde
+ * ----------|--------|--------
+ * `block` | Wordt gebruikt om ervoor te zorgen dat de checkbox getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen. | { boolean }
+ * `error` | Wordt gebruikt om aan te duiden dat de checkbox verplicht is. | { boolean }
+ * `disabled` | Wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren. | { boolean }
+ * `single` | Wordt gebruikt om alleen een checkbox te tonen zonder label. | { boolean }
+ * `switch` | Een checkbox variant met de stijl van een switch. | { boolean }
+ * 
  * @demo demo/vl-checkbox.html
  */
 export class VlCheckbox extends VlElement(HTMLElement) {
