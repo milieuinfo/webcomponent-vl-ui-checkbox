@@ -55,6 +55,11 @@ export class VlCheckbox extends VlElement(HTMLElement) {
         return this._element.querySelector('.vl-checkbox__label');
     }
 
+    /**
+     * Triggert een toggle van de checkbox zonder te klikken op de checkbox.
+     * 
+     * @Return {void}
+     */
     toggle() {
         this._inputElement.click();
     }
