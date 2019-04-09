@@ -1,6 +1,6 @@
 import{VlElement}from"/node_modules/vl-ui-core/vl-core.js";export class VlCheckbox extends VlElement(HTMLElement){static get _observedAttributes(){return["label","value","checked"]}static get _observedChildClassAttributes(){return["block","single","disabled","error","switch"]}constructor(){super(`
             <style>
-                @import 'https://cdn.milieuinfo.be/vl-ui-checkbox/1.0.2/style.css';
+                @import 'https://cdn.milieuinfo.be/vl-ui-checkbox/style.css';
             </style>
 
             <label class="vl-checkbox" for="checkbox">
