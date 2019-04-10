@@ -1,19 +1,17 @@
 import { VlElement } from '/node_modules/vl-ui-core/vl-core.src.js';
 
 /**
- * `vl-checkbox``
- * De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit een lijst. Gebruik de checkbox in formulieren.
+ * VlCheckbox
+ * @class
+ * @classdesc De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit een lijst. Gebruik de checkbox in formulieren. <a href="demo/vl-checkbox.html">Demo</a>.
  * 
- * ### Attributen
- * Attribuut | Uitleg | Waarde
- * ----------|--------|--------
- * `block` | Wordt gebruikt om ervoor te zorgen dat de checkbox getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen. | { boolean }
- * `error` | Wordt gebruikt om aan te duiden dat de checkbox verplicht is. | { boolean }
- * `disabled` | Wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren. | { boolean }
- * `single` | Wordt gebruikt om alleen een checkbox te tonen zonder label. | { boolean }
- * `switch` | Een checkbox variant met de stijl van een switch. | { boolean }
+ * @extends VlElement
  * 
- * @demo demo/vl-checkbox.html
+ * @property {boolean} block - Attribuut wordt gebruikt om ervoor te zorgen dat de checkbox getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.
+ * @property {boolean} error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
+ * @property {boolean} disabled - Attribuut wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren.
+ * @property {boolean} single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
+ * @property {boolean} switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
  */
 export class VlCheckbox extends VlElement(HTMLElement) {
     static get _observedAttributes() {
