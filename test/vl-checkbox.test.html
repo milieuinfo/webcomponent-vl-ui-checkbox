@@ -22,17 +22,9 @@
       </template>
     </test-fixture>
 
-    <script type="module">
-      import { VlRegisterElement } from '/node_modules/vl-ui-core/vl-core.js';
-
+    <script>
       suite('<vl-checkbox>', () => {
         const should = chai.should();
-
-        suiteSetup((done) => {
-            VlRegisterElement(() => {
-                done();
-            });
-        });
 
         test('krijgt de juiste class wanneer de knop een attribuut bevat', () => {
           const checkbox = fixture('vl-checkbox-fixture');
