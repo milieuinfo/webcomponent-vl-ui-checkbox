@@ -1,4 +1,4 @@
-import { VlRegisterElement, VlElement } from '/node_modules/vl-ui-core/vl-core.js';
+import { VlElement } from '/node_modules/vl-ui-core/vl-core.js';
 
 /**
  * VlCheckbox
@@ -124,6 +124,4 @@ export class VlCheckbox extends VlElement(HTMLElement) {
     }
 }
 
-VlRegisterElement(() => {
-    customElements.define('vl-checkbox', VlCheckbox);
-});
+customElements.define('vl-checkbox', VlCheckbox);
