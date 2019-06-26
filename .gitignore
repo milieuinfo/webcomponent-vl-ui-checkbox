@@ -1,3 +1,4 @@
 node_modules
 .sass-cache
 vl-checkbox.js
+.idea/

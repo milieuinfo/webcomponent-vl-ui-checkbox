@@ -2512,7 +2512,7 @@ body {
   margin: 0; }
 
 .vl-checkbox--disabled .vl-checkbox__label .vl-checkbox__box::after {
-  background-color: #f3f5f6;
+  background-color: #f4f5f7;
   border-color: #cbd2da; }
 .vl-checkbox--disabled .vl-checkbox__toggle:checked + .vl-checkbox__label .vl-checkbox__box::after {
   color: #cbd2da;
@@ -2529,7 +2529,7 @@ body {
       left: auto; }
 
 .vl-checkbox--error .vl-checkbox__label .vl-checkbox__box::after {
-  background-color: #fae6e6;
+  background-color: #fbe6e6;
   border-color: #db3434; }
 
 .vl-checkbox--empty {
@@ -3063,10 +3063,10 @@ a.vl-vi {
     display: block; }
 
 .vl-u-offset--spacing {
-  padding: 0 4.16667% 1rem; }
+  padding: 0 4.1666666667% 1rem; }
 
 .vl-u-offset--left {
-  margin-left: -4.16667%; }
+  margin-left: -4.1666666667%; }
   @media screen and (max-width: 767px) {
     .vl-u-offset--left {
       margin-left: 0;
@@ -3075,7 +3075,7 @@ a.vl-vi {
     padding-left: 0; }
 
 .vl-u-offset--right {
-  margin-right: -4.16667%; }
+  margin-right: -4.1666666667%; }
   @media screen and (max-width: 767px) {
     .vl-u-offset--right {
       margin-left: 0;
@@ -3146,13 +3146,10 @@ a.vl-vi {
   .vl-u-show-on-print {
     display: block; }
 
-  header,
-  footer {
+  header, footer {
     display: none; }
-    .vl-main-content header, [role="main"] header, main header, .vl-main-content
-    footer, [role="main"]
-    footer, main
-    footer {
+    .vl-main-content header, [role="main"] header, main header,
+    .vl-main-content footer, [role="main"] footer, main footer {
       display: block; }
 
   .iwgh3,
