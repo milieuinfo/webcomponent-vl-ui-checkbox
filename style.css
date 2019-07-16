@@ -3063,10 +3063,10 @@ a.vl-vi {
     display: block; }
 
 .vl-u-offset--spacing {
-  padding: 0 4.1666666667% 1rem; }
+  padding: 0 4.16667% 1rem; }
 
 .vl-u-offset--left {
-  margin-left: -4.1666666667%; }
+  margin-left: -4.16667%; }
   @media screen and (max-width: 767px) {
     .vl-u-offset--left {
       margin-left: 0;
@@ -3075,7 +3075,7 @@ a.vl-vi {
     padding-left: 0; }
 
 .vl-u-offset--right {
-  margin-right: -4.1666666667%; }
+  margin-right: -4.16667%; }
   @media screen and (max-width: 767px) {
     .vl-u-offset--right {
       margin-left: 0;
@@ -3146,10 +3146,13 @@ a.vl-vi {
   .vl-u-show-on-print {
     display: block; }
 
-  header, footer {
+  header,
+  footer {
     display: none; }
-    .vl-main-content header, [role="main"] header, main header,
-    .vl-main-content footer, [role="main"] footer, main footer {
+    .vl-main-content header, [role="main"] header, main header, .vl-main-content
+    footer, [role="main"]
+    footer, main
+    footer {
       display: block; }
 
   .iwgh3,
