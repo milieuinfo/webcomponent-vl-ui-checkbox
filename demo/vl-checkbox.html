@@ -18,13 +18,13 @@
             <h2>Checkbox</h2>
             <pre>
                 <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 1"&gt;&lt;/vl-checkbox&gt;
-                    &lt;vl-checkbox label="Optie 1" checked&gt;&lt;/vl-checkbox&gt;
+                    &lt;vl-checkbox data-vl-label="Optie 1"&gt;&lt;/vl-checkbox&gt;
+                    &lt;vl-checkbox data-vl-label="Optie 1" data-vl-checked&gt;&lt;/vl-checkbox&gt;
                 </code>
             </pre>
             <div class="demo">
-                <vl-checkbox label="Optie 1"></vl-checkbox>
-                <vl-checkbox label="Optie 1" checked></vl-checkbox>
+                <vl-checkbox data-vl-label="Optie 1"></vl-checkbox>
+                <vl-checkbox data-vl-label="Optie 1" data-vl-checked></vl-checkbox>
             </div>
         </div>
 
@@ -32,11 +32,11 @@
             <h2>Checkbox block</h2>
             <pre>
                 <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 2" block&gt;&lt;/vl-checkbox&gt;
+                    &lt;vl-checkbox data-vl-label="Optie 2" data-vl-block&gt;&lt;/vl-checkbox&gt;
                 </code>
             </pre>
             <div class="demo">
-                <vl-checkbox label="Optie 2" block></vl-checkbox>
+                <vl-checkbox data-vl-label="Optie 2" data-vl-block></vl-checkbox>
             </div>
         </div>
 
@@ -44,11 +44,11 @@
             <h2>Checkbox error</h2>
             <pre>
                 <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 3" error&gt;&lt;/vl-checkbox&gt;
+                    &lt;vl-checkbox data-vl-label="Optie 3" data-vl-error&gt;&lt;/vl-checkbox&gt;
                 </code>
             </pre>
             <div class="demo">
-                <vl-checkbox label="Optie 3" error></vl-checkbox>
+                <vl-checkbox data-vl-label="Optie 3" data-vl-error></vl-checkbox>
             </div>
         </div>
 
@@ -56,11 +56,11 @@
             <h2>Checkbox disabled</h2>
             <pre>
                 <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 4" disabled&gt;&lt;/vl-checkbox&gt;
+                    &lt;vl-checkbox data-vl-label="Optie 4" data-vl-disabled&gt;&lt;/vl-checkbox&gt;
                 </code>
             </pre>
             <div class="demo">
-                <vl-checkbox label="Optie 4" disabled></vl-checkbox>
+                <vl-checkbox data-vl-label="Optie 4" data-vl-disabled></vl-checkbox>
             </div>
         </div>
 
@@ -68,11 +68,11 @@
             <h2>Checkbox single</h2>
             <pre>
                 <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 5" single&gt;&lt;/vl-checkbox&gt;
+                    &lt;vl-checkbox data-vl-label="Optie 5" data-vl-single&gt;&lt;/vl-checkbox&gt;
                 </code>
             </pre>
             <div class="demo">
-                <vl-checkbox label="Optie 5" single></vl-checkbox>
+                <vl-checkbox data-vl-label="Optie 5" data-vl-single></vl-checkbox>
             </div>
         </div>
 
@@ -80,11 +80,11 @@
             <h2>Checkbox switch</h2>
             <pre>
                 <code class="line-numbers language-markup">
-                    &lt;vl-checkbox switch&gt;&lt;/vl-checkbox&gt;
+                    &lt;vl-checkbox data-vl-switch&gt;&lt;/vl-checkbox&gt;
                 </code>
             </pre>
             <div class="demo">
-                <vl-checkbox switch></vl-checkbox>
+                <vl-checkbox data-vl-switch></vl-checkbox>
             </div>
         </div>
 
@@ -92,15 +92,15 @@
             <h2>Checkboxes multiple</h2>
             <pre>
                 <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 1" value="1" checked="[]"&gt;&lt;/vl-checkbox&gt;
-                    &lt;vl-checkbox label="Optie 2" value="2" checked="[]"&gt;&lt;/vl-checkbox&gt;
-                    &lt;vl-checkbox label="Optie 3" value="3" checked="[]"&gt;&lt;/vl-checkbox&gt;
+                    &lt;vl-checkbox data-vl-label="Optie 1" data-vl-value="1" data-vl-checked="[]"&gt;&lt;/vl-checkbox&gt;
+                    &lt;vl-checkbox data-vl-label="Optie 2" data-vl-value="2" data-vl-checked="[]"&gt;&lt;/vl-checkbox&gt;
+                    &lt;vl-checkbox data-vl-label="Optie 3" data-vl-value="3" data-vl-checked="[]"&gt;&lt;/vl-checkbox&gt;
                 </code>
             </pre>
             <div class="demo">
-                <vl-checkbox label="Optie 1" value="1" checked="[]"></vl-checkbox>
-                <vl-checkbox label="Optie 2" value="2" checked="[]"></vl-checkbox>
-                <vl-checkbox label="Optie 3" value="3" checked="[]"></vl-checkbox>
+                <vl-checkbox data-vl-label="Optie 1" data-vl-value="1" data-vl-checked="[]"></vl-checkbox>
+                <vl-checkbox data-vl-label="Optie 2" data-vl-value="2" data-vl-checked="[]"></vl-checkbox>
+                <vl-checkbox data-vl-label="Optie 3" data-vl-value="3" data-vl-checked="[]"></vl-checkbox>
             </div>
         </div>
 
@@ -108,15 +108,15 @@
             <h2>Checkboxes multiple standaard checked</h2>
             <pre>
                 <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 1" value="1" checked="[2,3]"&gt;&lt;/vl-checkbox&gt;
-                    &lt;vl-checkbox label="Optie 2" value="2" checked="[2,3]"&gt;&lt;/vl-checkbox&gt;
-                    &lt;vl-checkbox label="Optie 3" value="3" checked="[2,3]"&gt;&lt;/vl-checkbox&gt;
+                    &lt;vl-checkbox data-vl-label="Optie 1" data-vl-value="1" data-vl-checked="[2,3]"&gt;&lt;/vl-checkbox&gt;
+                    &lt;vl-checkbox data-vl-label="Optie 2" data-vl-value="2" data-vl-checked="[2,3]"&gt;&lt;/vl-checkbox&gt;
+                    &lt;vl-checkbox data-vl-label="Optie 3" data-vl-value="3" data-vl-checked="[2,3]"&gt;&lt;/vl-checkbox&gt;
                 </code>
             </pre>
             <div class="demo">
-                <vl-checkbox label="Optie 1" value="1" checked="[2,3]"></vl-checkbox>
-                <vl-checkbox label="Optie 2" value="2" checked="[2,3]"></vl-checkbox>
-                <vl-checkbox label="Optie 3" value="3" checked="[2,3]"></vl-checkbox>
+                <vl-checkbox data-vl-label="Optie 1" data-vl-value="1" data-vl-checked="[2,3]"></vl-checkbox>
+                <vl-checkbox data-vl-label="Optie 2" data-vl-value="2" data-vl-checked="[2,3]"></vl-checkbox>
+                <vl-checkbox data-vl-label="Optie 3" data-vl-value="3" data-vl-checked="[2,3]"></vl-checkbox>
             </div>
         </div>
     </body>
