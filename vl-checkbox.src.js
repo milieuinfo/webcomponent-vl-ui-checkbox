@@ -12,6 +12,8 @@ import { VlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
  * @property {boolean} disabled - Attribuut wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren.
  * @property {boolean} single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
  * @property {boolean} switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
+ * 
+ * @version <a href="http://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/releases/latest">Release notes</a>
  */
 export class VlCheckbox extends VlElement(HTMLElement) {
     static get _observedAttributes() {
