@@ -79,7 +79,7 @@ export class VlCheckbox extends VlElement(HTMLElement) {
         } else {
             checked = this.checked;
         }
-        this.dispatchEvent(new CustomEvent('input', { detail: checked, bubbles: true, composed: true }));
+        parent.dispatchEvent(new CustomEvent('input', { detail: checked, bubbles: true, composed: true }));
     }
 
     _labelChangedCallback(oldValue, newValue) {
