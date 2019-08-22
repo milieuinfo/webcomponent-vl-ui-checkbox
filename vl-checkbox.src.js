@@ -40,7 +40,7 @@ export class VlCheckbox extends VlElement(HTMLElement) {
     }
 
     connectedCallback() {
-        this._inputElement.onchange = this._toggle;
+        this._inputElement.oninput = this._toggle;
     }
 
     get _classPrefix() {
@@ -64,7 +64,8 @@ export class VlCheckbox extends VlElement(HTMLElement) {
         this._inputElement.click();
     }
 
-    _toggle() {
+    _toggle(e) {
+        e.stopPropagation();
         let checked;
         const parent = this.getRootNode().host;
         if (parent._checked && Array.isArray(parent._checked)) {

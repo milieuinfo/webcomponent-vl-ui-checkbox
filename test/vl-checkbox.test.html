@@ -6,11 +6,18 @@
     <script src="../../web-component-tester/browser.js"></script>
 
     <script type="module" src="../vl-checkbox.src.js"></script>
+    <script type="module" src="../demo/lit-element-demo.js"></script>
   </head>
   <body>
     <test-fixture id="vl-checkbox-fixture">
       <template>
         <vl-checkbox></vl-checkbox>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-checkbox-lit-fixture">
+      <template>
+        <lit-element-demo></lit-element-demo>
       </template>
     </test-fixture>
 
@@ -122,6 +129,20 @@
             }
           });
           checkboxInput.click();
+        });
+
+        test('het klikken op het input veld zal een event gooien met de waarde van het boolean checked attribuut => litelement', (done) => {
+          const demo = fixture('vl-checkbox-lit-fixture');
+          demo.updateComplete.then(() => {
+            const checkboxInput = demo.shadowRoot.querySelector(
+                "vl-checkbox").shadowRoot.querySelector('input');
+            checkboxInput.addEventListener('input', (e) => {
+              assert.isTrue(e.bubbles);
+              assert.isTrue(e.composed);
+              done();
+            });
+            checkboxInput.click();
+          });
         });
 
         test('toggle zal een event gooien met de waarde van het boolean checked attribuut', (done) => {

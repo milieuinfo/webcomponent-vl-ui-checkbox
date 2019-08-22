@@ -1,16 +1,15 @@
 import {
   html,
   LitElement
-} from 'https://unpkg.com/lit-element@latest/lit-element.js?module';
+} from 'https://unpkg.com/lit-element@2.1.0/lit-element.js?module';
 import {define} from '/node_modules/vl-ui-core/vl-core.js';
-import '/node_modules/vl-ui-modal/vl-modal.js';
 import '../vl-checkbox.src.js';
 
 export class LitElementDemo extends LitElement {
 
   static get properties() {
     return {
-      hide: {type: Boolean}
+      changed: {type: Boolean}
     };
   }
 
@@ -25,23 +24,25 @@ export class LitElementDemo extends LitElement {
   }
 
   render() {
-    return html`${this.renderComponent()} <button @click="${this.buttonClick}">Open Modal</button>`;
-  }
-
-  buttonClick() {
-    this.shadowRoot.querySelector("vl-modal[id=\"modal-checkbox-demo\"]").open()
+    return html`${this.renderComponent()}${this.renderChange()}`;
   }
 
   renderComponent() {
-      return html`<vl-modal data-title="Modal 7" id="modal-checkbox-demo"><vl-checkbox slot="content"
+    return html`<vl-checkbox id="checkbox" slot="content"
         id="id-element"
         label="label"
         block
-        @input="${this._changeBooleanValue}"></vl-checkbox></vl-modal>`;
+        @input="${this._changeBooleanValue}"></vl-checkbox>`;
+  }
+
+  renderChange() {
+    if (this.changed) {
+      return html`<span>Changed</span>`;
+    }
   }
 
   _changeBooleanValue(e) {
-    console.log("dees werkt");
+    this.changed = e.detail;
   }
 }
 
