@@ -134,9 +134,10 @@
         test('het klikken op het input veld zal een event gooien met de waarde van het boolean checked attribuut => litelement', (done) => {
           const demo = fixture('vl-checkbox-lit-fixture');
           demo.updateComplete.then(() => {
-            const checkboxInput = demo.shadowRoot.querySelector(
-                "vl-checkbox").shadowRoot.querySelector('input');
-            checkboxInput.addEventListener('input', (e) => {
+            const checkbox = demo.shadowRoot.querySelector(
+                "vl-checkbox");
+            const checkboxInput = checkbox.shadowRoot.querySelector('input');
+            checkbox.addEventListener('input', (e) => {
               assert.isTrue(e.bubbles);
               assert.isTrue(e.composed);
               done();
