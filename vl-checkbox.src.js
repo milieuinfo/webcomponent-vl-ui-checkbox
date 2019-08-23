@@ -13,7 +13,8 @@ import { VlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
  * @property {boolean} single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
  * @property {boolean} switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
  * 
- * @version <a href="http://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/releases/latest">Release notes</a>
+ * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/releases/latest|Release notes}
+ * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/issues|Issues}
  */
 export class VlCheckbox extends VlElement(HTMLElement) {
     static get _observedAttributes() {
