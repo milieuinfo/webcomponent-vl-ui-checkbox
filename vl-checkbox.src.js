@@ -3,7 +3,7 @@ import { VlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
 /**
  * VlCheckbox
  * @class
- * @classdesc De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit een lijst. Gebruik de checkbox in formulieren. <a href="demo/vl-checkbox.html">Demo</a>.
+ * @classdesc De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit een lijst. Gebruik de checkbox in formulieren.
  * 
  * @extends VlElement
  * 
@@ -15,6 +15,7 @@ import { VlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
  * 
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/issues|Issues}
+ * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-ui-checkbox.html|Demo}
  */
 export class VlCheckbox extends VlElement(HTMLElement) {
     static get _observedAttributes() {
