@@ -1,6 +1,6 @@
 version: 2
 plan:
-  project-key: WEBCOM
+  project-key: WEBCO
   key: VLUICHECKBOX
   name: webcomponent-vl-ui-checkbox
 
