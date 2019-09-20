@@ -12,12 +12,26 @@ variables:
 
 stages:
   - Build:
-      manual: false
       jobs:
-        - Build docker
+        - Build
+  - Release:
+      manual: true
+      jobs:
+        - Release
 
-Build docker:
+Build:
   key: BD
+  tasks:
+    - clean
+    - script:
+        scripts:
+          - 'docker-compose -f test/docker-compose.yml up --exit-code-from tests'
+          - /opt/scripts/docker/stop-docker-containers.sh
+  requirements:
+    - REMOTE_ONLY
+
+Release:
+  key: REL
   tasks:
     - clean
     - script:
