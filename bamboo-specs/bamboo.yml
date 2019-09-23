@@ -55,9 +55,9 @@ plan-permissions:
       - bamboo-admin
       - bamboo-release
       - developer-admin
-      - permissions:
-          - view
-          - edit
-          - build
-          - clone
-          - admin
+    permissions:
+      - view
+      - edit
+      - build
+      - clone
+      - admin
