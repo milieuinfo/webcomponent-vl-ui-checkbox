@@ -1,3 +1,4 @@
+---
 version: 2
 plan:
   project-key: WEBCO
@@ -43,3 +44,20 @@ Release:
           - /opt/scripts/docker/stop-docker-containers.sh
   requirements:
     - REMOTE_ONLY
+
+---
+version: 2
+plan:
+  key: VLUICHECKBOX
+
+plan-permissions:
+  - groups:
+      - bamboo-admin
+      - bamboo-release
+      - developer-admin
+      - permissions:
+          - view
+          - edit
+          - build
+          - clone
+          - admin
