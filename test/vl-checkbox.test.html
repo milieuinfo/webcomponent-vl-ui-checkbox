@@ -115,7 +115,7 @@
         test('het klikken op het input veld zal een event gooien met de waarde van het boolean checked attribuut', (done) => {
           const checkbox = fixture('vl-checkbox-fixture');
           const checkboxInput = checkbox.shadowRoot.querySelector('input');
-          checkbox.addEventListener('input', (e) => {
+          checkbox.addEventListener('change', (e) => {
             if (e.detail) {
               assert.isTrue(e.detail);
               done();
@@ -127,7 +127,7 @@
         test('toggle zal een event gooien met de waarde van het boolean checked attribuut', (done) => {
           const checkbox = fixture('vl-checkbox-fixture');
           const checkboxInput = checkbox.shadowRoot.querySelector('input');
-          checkbox.addEventListener('input', (e) => {
+          checkbox.addEventListener('change', (e) => {
             if (e.detail) {
               assert.isTrue(e.detail);
               done();
@@ -172,7 +172,7 @@
           const checkbox = checkboxes[0];
           const checkboxInput = checkbox.shadowRoot.querySelector('input');
           checkbox.setAttribute('checked', '[2,3]');
-          checkbox.addEventListener('input', (e) => {
+          checkbox.addEventListener('change', (e) => {
             if (e.detail) {
               assert.isTrue(JSON.parse(checkbox.getAttribute('checked')).includes(1));
               done();
@@ -186,7 +186,7 @@
           const checkbox = checkboxes[0];
           const checkboxInput = checkbox.shadowRoot.querySelector('input');
           checkbox.setAttribute('checked', '[2,3]');
-          checkbox.addEventListener('input', (e) => {
+          checkbox.addEventListener('change', (e) => {
             if (e.detail) {
               assert.isTrue(JSON.parse(checkbox.getAttribute('checked')).includes(1));
               done();

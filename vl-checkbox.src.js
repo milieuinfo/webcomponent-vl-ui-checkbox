@@ -59,14 +59,15 @@ export class VlCheckbox extends VlElement(HTMLElement) {
 
     /**
      * Triggert een toggle van de checkbox zonder te klikken op de checkbox.
-     * 
+     *
      * @Return {void}
      */
     toggle() {
         this._inputElement.click();
     }
 
-    _toggle() {
+    _toggle(e) {
+        e.stopPropagation();
         let checked;
         const parent = this.getRootNode().host;
         if (parent._checked && Array.isArray(parent._checked)) {
@@ -81,7 +82,7 @@ export class VlCheckbox extends VlElement(HTMLElement) {
         } else {
             checked = this.checked;
         }
-        this.dispatchEvent(new CustomEvent('input', { detail: checked, bubbles: true, composed: true }));
+        parent.dispatchEvent(new CustomEvent('change', { detail: checked, bubbles: true, composed: true }));
     }
 
     _labelChangedCallback(oldValue, newValue) {
