@@ -43,6 +43,7 @@ export class VlCheckbox extends VlElement(HTMLElement) {
 
     connectedCallback() {
         this._inputElement.onchange = this._toggle;
+        this._inputElement.oninput = event => event.stopPropagation();
     }
 
     get _classPrefix() {
@@ -66,7 +67,12 @@ export class VlCheckbox extends VlElement(HTMLElement) {
         this._inputElement.click();
     }
 
-    _toggle() {
+    get checked() {
+        return this._inputElement.checked;
+    }
+
+    _toggle(event) {
+        event.stopPropagation();
         let checked;
         const parent = this.getRootNode().host;
         if (parent._checked && Array.isArray(parent._checked)) {
@@ -81,7 +87,7 @@ export class VlCheckbox extends VlElement(HTMLElement) {
         } else {
             checked = this.checked;
         }
-        this.dispatchEvent(new CustomEvent('input', { detail: checked, bubbles: true, composed: true }));
+        parent.dispatchEvent(new CustomEvent('input', { detail: this.checked, bubbles: true, composed: true }));
     }
 
     _labelChangedCallback(oldValue, newValue) {
