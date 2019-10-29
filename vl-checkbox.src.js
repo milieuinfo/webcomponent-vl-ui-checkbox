@@ -67,6 +67,11 @@ export class VlCheckbox extends VlElement(HTMLElement) {
         this._inputElement.click();
     }
 
+    /**
+     * Geeft de waarde van de checkbox terug.
+     * 
+     * @Return {boolean}
+     */
     get checked() {
         return this._inputElement.checked;
     }
