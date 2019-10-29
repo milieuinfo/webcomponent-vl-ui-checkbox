@@ -23,8 +23,17 @@
                 </code>
             </pre>
             <div class="demo">
-                <vl-checkbox label="Optie 1"></vl-checkbox>
-                <vl-checkbox label="Optie 1" checked></vl-checkbox>
+                <vl-checkbox id="checkbox-1" label="Optie 1"></vl-checkbox>
+                <vl-checkbox id="checkbox-2" label="Optie 1" checked></vl-checkbox>
+                <script>
+                    document.querySelector('#checkbox-1').addEventListener('input', (e) => {
+                        console.log(e.srcElement.id + ' value: ' + e.srcElement.checked);
+                    });
+
+                    document.querySelector('#checkbox-2').addEventListener('input', (e) => {
+                        console.log(e.srcElement.id + ' value: ' + e.srcElement.checked);
+                    });
+                </script>
             </div>
         </div>
 
