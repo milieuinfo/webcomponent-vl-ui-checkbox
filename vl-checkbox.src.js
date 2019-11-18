@@ -76,8 +76,7 @@ export class VlCheckbox extends VlElement(HTMLElement) {
         return this._inputElement.checked;
     }
 
-    _toggle(event) {
-        event.stopPropagation();
+    _toggle() {
         let checked;
         const parent = this.getRootNode().host;
         if (parent._checked && Array.isArray(parent._checked)) {
