@@ -68,6 +68,10 @@ class VlCheckboxPage extends Page {
         return this.driver.executeScript('return arguments[0].checked', element);
     }
 
+    async click(element) {
+        return this.driver.executeScript('return arguments[0].click();', element);
+    } 
+
     async load() {
         await super.load(Config.baseUrl + '/demo/vl-checkbox.html');
     }
