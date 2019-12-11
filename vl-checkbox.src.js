@@ -32,7 +32,7 @@ export class VlCheckbox extends VlElement(HTMLElement) {
                 @import '../style.css';
             </style>
 
-            <label class="vl-checkbox" for="checkbox">
+            <label id="label" class="vl-checkbox" for="checkbox">
                 <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
                 <div class="vl-checkbox__label">
                     <i class="vl-checkbox__box" aria-hidden="true"></i>
