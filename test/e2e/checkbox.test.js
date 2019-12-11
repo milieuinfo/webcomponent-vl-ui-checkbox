@@ -98,6 +98,4 @@ describe('vl-checkbox', async () => {
         await assert.eventually.isFalse(checkbox2.isChecked());
         await assert.eventually.isFalse(checkbox3.isChecked());
     });
-
-    after(() => driver && driver.quit());
 });
