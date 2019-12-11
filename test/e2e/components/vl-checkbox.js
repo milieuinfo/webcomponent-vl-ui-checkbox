@@ -24,8 +24,16 @@ class VlCheckbox extends VlElement {
         return this.driver.executeScript('return arguments[0].checked', input);
     }
 
+    async isBlock() {
+        return this._hasClass('vl-checkbox--block');
+    }
+
     async isError() {
         return this._hasClass('vl-checkbox--error');
+    }
+
+    async isSingle() {
+        return this._hasClass('vl-checkbox--single');
     }
 
     async isSwitch() {

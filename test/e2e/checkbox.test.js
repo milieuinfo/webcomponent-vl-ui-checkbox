@@ -9,7 +9,7 @@ describe('vl-checkbox', async () => {
         return vlCheckboxPage.load();
     });
 
-    it('ik kan een standaard checkbox aan- en uitvinken', async () => {
+    it('als gebruiker kan ik een standaard checkbox aan- en uitvinken', async () => {
         const checkbox1 = await vlCheckboxPage.getCheckbox1();
         const checkbox2 = await vlCheckboxPage.getCheckbox2();
 
@@ -21,24 +21,23 @@ describe('vl-checkbox', async () => {
         await assert.eventually.isFalse(checkbox2.isChecked());
     });
 
-    it('ik kan een checkbox in block aan- en uitvinken', async () => {
-        const checkbox = await vlCheckboxPage.getCheckboxBlock();
+    it('als gebruiker kan ik het verschil zien tussen een block en een gewone checkbox', async () => {
+        const checkbox = await vlCheckboxPage.getCheckbox1();
+        const blockCheckbox = await vlCheckboxPage.getCheckboxBlock();
 
-        await assert.eventually.isFalse(checkbox.isChecked());
-        await checkbox.click(checkbox);
-        await assert.eventually.isTrue(checkbox.isChecked());
+        await assert.eventually.isFalse(checkbox.isBlock());
+        await assert.eventually.isTrue(blockCheckbox.isBlock());
     });
 
-    it('ik kan een error checkbox aan- en uitvinken', async () => {
-        const checkbox = await vlCheckboxPage.getCheckboxError();
+    it('als gebruiker kan ik het verschil zien tussen een error en een gewone checkbox', async () => {
+        const checkbox = await vlCheckboxPage.getCheckbox1();
+        const errorCheckbox = await vlCheckboxPage.getCheckboxError();
 
-        await assert.eventually.isTrue(checkbox.isError());
-        await assert.eventually.isFalse(checkbox.isChecked());
-        await checkbox.click(checkbox);
-        await assert.eventually.isTrue(checkbox.isChecked());
+        await assert.eventually.isFalse(checkbox.isError());
+        await assert.eventually.isTrue(errorCheckbox.isError());
     });
 
-    it('ik kan een disabled checkbox niet aanvinken', async() => {
+    it('als gebruiker kan ik een disabled checkbox niet aanvinken', async() => {
         const checkbox = await vlCheckboxPage.getCheckboxDisabled();
 
         await assert.eventually.isTrue(checkbox.isDisabled());
@@ -47,15 +46,15 @@ describe('vl-checkbox', async () => {
         await assert.eventually.isFalse(checkbox.isChecked());
     });
 
-    it('ik kan een single checkbox aan- en uitvinken', async () => {
-        const checkbox = await vlCheckboxPage.getCheckboxSingle();
+    it('als gebruiker kan ik het verschil zien tussen een single en een gewone checkbox', async () => {
+        const checkbox = await vlCheckboxPage.getCheckboxDisabled();
+        const singleCheckbox = await vlCheckboxPage.getCheckboxSingle();
 
-        await assert.eventually.isFalse(checkbox.isChecked());
-        await checkbox.click(checkbox);
-        await assert.eventually.isTrue(checkbox.isChecked());
+        await assert.eventually.isFalse(checkbox.isSingle());
+        await assert.eventually.isTrue(singleCheckbox.isSingle());
     });
 
-    it('ik kan een switch checkbox aan- en uitvinken', async () => {
+    it('als gebruiker kan ik een switch checkbox aan- en uitvinken', async () => {
         const checkbox = await vlCheckboxPage.getCheckboxSwitch();
 
         await assert.eventually.isTrue(checkbox.isSwitch());
@@ -64,7 +63,7 @@ describe('vl-checkbox', async () => {
         await assert.eventually.isTrue(checkbox.isChecked());
     });
 
-    it('ik kan multi checkboxes aan- en uitvinken', async () => {
+    it('als gebruiker kan ik multi checkboxes aan- en uitvinken', async () => {
         const checkbox1 = await vlCheckboxPage.getCheckboxMulti1();
         const checkbox2 = await vlCheckboxPage.getCheckboxMulti2();
         const checkbox3 = await vlCheckboxPage.getCheckboxMulti3();
@@ -82,7 +81,7 @@ describe('vl-checkbox', async () => {
         await assert.eventually.isTrue(checkbox3.isChecked());
     });
 
-    it('ik kan multi standaard checkboxes aan- en uitvinken', async () => {
+    it('als gebruiker kan ik multi standaard checkboxes aan- en uitvinken', async () => {
         const checkbox1 = await vlCheckboxPage.getCheckboxMultiStandard1();
         const checkbox2 = await vlCheckboxPage.getCheckboxMultiStandard2();
         const checkbox3 = await vlCheckboxPage.getCheckboxMultiStandard3();
