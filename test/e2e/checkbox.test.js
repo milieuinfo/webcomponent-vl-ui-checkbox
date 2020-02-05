@@ -1,5 +1,5 @@
 
-const { assert, driver } = require('vl-ui-core').Test;
+const { assert, driver } = require('vl-ui-core').Test.Setup;
 const VlCheckboxPage = require('./pages/vl-checkbox.page');
 
 describe('vl-checkbox', async () => {
@@ -98,4 +98,8 @@ describe('vl-checkbox', async () => {
         await assert.eventually.isFalse(checkbox2.isChecked());
         await assert.eventually.isFalse(checkbox3.isChecked());
     });
+
+    after(async () => {
+        return driver.quit();
+    })
 });
