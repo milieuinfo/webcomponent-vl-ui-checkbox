@@ -1,5 +1,5 @@
 const VlCheckbox = require('../components/vl-checkbox');
-const { Page, Config } = require('vl-ui-core');
+const { Page, Config } = require('vl-ui-core').Test;
 
 class VlCheckboxPage extends Page {
     async _getCheckbox(selector) {

@@ -1,3 +1,5 @@
 module.exports = { 
-    'VlCheckbox': require('./test/e2e/components/vl-checkbox')
+    Test: {
+        VlCheckbox: require('./test/e2e/components/vl-checkbox')
+    }
 }
