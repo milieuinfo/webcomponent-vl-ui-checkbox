@@ -1,6 +1,6 @@
 {
   "name": "vl-ui-checkbox",
-  "version": "1.0.18",
+  "version": "2.0.0",
   "description": "De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit een lijst. Gebruik de checkbox in formulieren.",
   "author": "DIDM",
   "license": "MIT",
