@@ -29,7 +29,7 @@ export class VlCheckbox extends VlElement(HTMLElement) {
     constructor() {
         super(`
             <style>
-                @import '../style.css';
+                @import '/style.css';
             </style>
 
             <label id="label" class="vl-checkbox" for="checkbox">
