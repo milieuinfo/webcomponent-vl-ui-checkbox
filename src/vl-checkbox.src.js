@@ -130,7 +130,7 @@ export class VlCheckbox extends VlElement(HTMLElement) {
     }
 
     _isTextNode(node) {
-        return node.nodeType === 3;
+        return node.nodeType === Node.TEXT_NODE;
     }
 
     _removeNode(node) {
