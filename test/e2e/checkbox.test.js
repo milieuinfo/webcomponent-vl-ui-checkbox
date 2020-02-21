@@ -14,7 +14,6 @@ describe('vl-checkbox', async () => {
         const checkbox2 = await vlCheckboxPage.getCheckbox2();
 
         await kanCheckboxAanEnUitvinken(checkbox1);
-        await kanCheckboxAanEnUitvinken(checkbox2);
     });
 
     it('als gebruiker kan ik het verschil zien tussen een block en een gewone checkbox', async () => {
