@@ -13,12 +13,8 @@ describe('vl-checkbox', async () => {
         const checkbox1 = await vlCheckboxPage.getCheckbox1();
         const checkbox2 = await vlCheckboxPage.getCheckbox2();
 
-        await assert.eventually.isFalse(checkbox1.isChecked());
-        await assert.eventually.isTrue(checkbox2.isChecked());     
-        await checkbox1.click();
-        await checkbox2.click();
-        await assert.eventually.isTrue(checkbox1.isChecked());
-        await assert.eventually.isFalse(checkbox2.isChecked());
+        await kanCheckboxAanEnUitvinken(checkbox1);
+        await kanCheckboxAanEnUitvinken(checkbox2);
     });
 
     it('als gebruiker kan ik het verschil zien tussen een block en een gewone checkbox', async () => {
@@ -37,17 +33,24 @@ describe('vl-checkbox', async () => {
         await assert.eventually.isTrue(errorCheckbox.isError());
     });
 
-    it('als gebruiker kan ik een disabled checkbox niet aanvinken', async() => {
-        const checkbox = await vlCheckboxPage.getCheckboxDisabled();
+    it('als gebruiker kan ik een disabled checkbox niet aan- of uitvinken', async() => {
+        const checkboxUitgevinkt = await vlCheckboxPage.getCheckboxDisabledUitgevinkt();
+        const checkboxAangevinkt = await vlCheckboxPage.getCheckboxDisabledAangevinkt();
 
-        await assert.eventually.isTrue(checkbox.isDisabled());
-        await assert.eventually.isFalse(checkbox.isChecked());
-        await checkbox.click(checkbox);
-        await assert.eventually.isFalse(checkbox.isChecked());
+        await assert.eventually.isTrue(checkboxUitgevinkt.isDisabled());
+        await assert.eventually.isTrue(checkboxAangevinkt.isDisabled());
+        
+        await assert.eventually.isFalse(checkboxUitgevinkt.isChecked());
+        await checkboxUitgevinkt.click();
+        await assert.eventually.isFalse(checkboxUitgevinkt.isChecked());
+
+        await assert.eventually.isTrue(checkboxAangevinkt.isChecked());
+        await checkboxAangevinkt.click();
+        await assert.eventually.isTrue(checkboxAangevinkt.isChecked());
     });
 
     it('als gebruiker kan ik het verschil zien tussen een single en een gewone checkbox', async () => {
-        const checkbox = await vlCheckboxPage.getCheckboxDisabled();
+        const checkbox = await vlCheckboxPage.getCheckbox1();
         const singleCheckbox = await vlCheckboxPage.getCheckboxSingle();
 
         await assert.eventually.isFalse(checkbox.isSingle());
@@ -55,12 +58,10 @@ describe('vl-checkbox', async () => {
     });
 
     it('als gebruiker kan ik een switch checkbox aan- en uitvinken', async () => {
-        const checkbox = await vlCheckboxPage.getCheckboxSwitch();
+        const switchCheckbox = await vlCheckboxPage.getCheckboxSwitch();
 
-        await assert.eventually.isTrue(checkbox.isSwitch());
-        await assert.eventually.isFalse(checkbox.isChecked());
-        await checkbox.click(checkbox);
-        await assert.eventually.isTrue(checkbox.isChecked());
+        await assert.eventually.isTrue(switchCheckbox.isSwitch());
+        await kanCheckboxAanEnUitvinken(switchCheckbox);
     });
 
     it('als gebruiker kan ik multi checkboxes aan- en uitvinken', async () => {
@@ -72,16 +73,12 @@ describe('vl-checkbox', async () => {
         await assert.eventually.isFalse(checkbox2.isChecked());
         await assert.eventually.isFalse(checkbox3.isChecked());
         
-        await checkbox1.click();
-        await checkbox2.click();
-        await checkbox3.click();
-        
-        await assert.eventually.isTrue(checkbox1.isChecked());
-        await assert.eventually.isTrue(checkbox2.isChecked());
-        await assert.eventually.isTrue(checkbox3.isChecked());
+        await kanCheckboxAanEnUitvinken(checkbox1);
+        await kanCheckboxAanEnUitvinken(checkbox2);
+        await kanCheckboxAanEnUitvinken(checkbox3);
     });
 
-    it('als gebruiker kan ik multi standaard checkboxes aan- en uitvinken', async () => {
+    it('de intialisatie van multiple checkboxes wordt correct getoond', async () => {
         const checkbox1 = await vlCheckboxPage.getCheckboxMultiStandard1();
         const checkbox2 = await vlCheckboxPage.getCheckboxMultiStandard2();
         const checkbox3 = await vlCheckboxPage.getCheckboxMultiStandard3();
@@ -89,15 +86,15 @@ describe('vl-checkbox', async () => {
         await assert.eventually.isFalse(checkbox1.isChecked());
         await assert.eventually.isTrue(checkbox2.isChecked());
         await assert.eventually.isTrue(checkbox3.isChecked());
-        
-        await checkbox1.click();
-        await checkbox2.click();
-        await checkbox3.click();
-        
-        await assert.eventually.isTrue(checkbox1.isChecked());
-        await assert.eventually.isFalse(checkbox2.isChecked());
-        await assert.eventually.isFalse(checkbox3.isChecked());
     });
+
+    async function kanCheckboxAanEnUitvinken(checkbox) {
+        const initialState = await checkbox.isChecked();
+        await checkbox.click(); 
+        await assert.eventually.equal(checkbox.isChecked(), !initialState);   
+        await checkbox.click(); 
+        await assert.eventually.equal(checkbox.isChecked(), initialState);  
+    }
 
     after(async () => {
         return driver.quit();
