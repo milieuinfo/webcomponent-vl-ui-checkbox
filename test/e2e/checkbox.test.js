@@ -11,7 +11,6 @@ describe('vl-checkbox', async () => {
 
     it('als gebruiker kan ik een standaard checkbox aan- en uitvinken', async () => {
         const checkbox1 = await vlCheckboxPage.getCheckbox1();
-        const checkbox2 = await vlCheckboxPage.getCheckbox2();
 
         await kanCheckboxAanEnUitvinken(checkbox1);
     });
@@ -77,7 +76,7 @@ describe('vl-checkbox', async () => {
         await kanCheckboxAanEnUitvinken(checkbox3);
     });
 
-    it('de intialisatie van multiple checkboxes wordt correct getoond', async () => {
+    it('als gebruiker zie ik dat multiple checkboxes correct geïnitialiseerd zijn', async () => {
         const checkbox1 = await vlCheckboxPage.getCheckboxMultiStandard1();
         const checkbox2 = await vlCheckboxPage.getCheckboxMultiStandard2();
         const checkbox3 = await vlCheckboxPage.getCheckboxMultiStandard3();

@@ -20,18 +20,12 @@
             <pre>
                 <code class="line-numbers language-markup">
                     &lt;vl-checkbox label="Optie 1"&gt;&lt;/vl-checkbox&gt;
-                    &lt;vl-checkbox label="Optie 1" checked&gt;&lt;/vl-checkbox&gt;
                 </code>
             </pre>
             <div class="demo">
                 <vl-checkbox id="checkbox-1" label="Optie 1"></vl-checkbox>
-                <vl-checkbox id="checkbox-2" label="Optie 1" checked></vl-checkbox>
                 <script>
                     document.querySelector('#checkbox-1').addEventListener('input', (e) => {
-                        console.log(e.srcElement.id + ' value: ' + e.srcElement.checked);
-                    });
-
-                    document.querySelector('#checkbox-2').addEventListener('input', (e) => {
                         console.log(e.srcElement.id + ' value: ' + e.srcElement.checked);
                     });
                 </script>
