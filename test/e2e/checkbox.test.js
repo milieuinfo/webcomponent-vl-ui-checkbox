@@ -94,7 +94,4 @@ describe('vl-checkbox', async () => {
         await assert.eventually.equal(checkbox.isChecked(), initialState);  
     }
 
-    after(async () => {
-        return driver.quit();
-    })
 });
