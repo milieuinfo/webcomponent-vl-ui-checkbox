@@ -1,3 +1,3 @@
 module.exports = { 
-    VlCheckbox: require('../vl-checkbox.src.js').VlCheckbox
+    VlCheckbox: require('../dist/vl-checkbox.src.js').VlCheckbox
 }

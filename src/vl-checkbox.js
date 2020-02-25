@@ -1,4 +1,4 @@
-import { VlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
+import { VlElement, define } from '/node_modules/vl-ui-core/dist/vl-core.js';
 
 /**
  * VlCheckbox
@@ -29,7 +29,7 @@ export class VlCheckbox extends VlElement(HTMLElement) {
     constructor() {
         super(`
             <style>
-                @import '/style.css';
+                @import '/src/style.css';
             </style>
 
             <label id="label" class="vl-checkbox" for="checkbox">
