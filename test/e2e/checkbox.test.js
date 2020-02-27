@@ -15,6 +15,12 @@ describe('vl-checkbox', async () => {
         await kanCheckboxAanEnUitvinken(checkbox1);
     });
 
+    it('als gebruiker zie ik een label bij de checkbox', async () => {
+        const checkbox1 = await vlCheckboxPage.getCheckbox1();
+
+        await assert.eventually.equal(checkbox1.getLabel(), 'Optie 1');
+    });
+
     it('als gebruiker kan ik het verschil zien tussen een block en een gewone checkbox', async () => {
         const checkbox = await vlCheckboxPage.getCheckbox1();
         const blockCheckbox = await vlCheckboxPage.getCheckboxBlock();
