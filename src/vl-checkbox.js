@@ -76,6 +76,17 @@ export class VlCheckbox extends VlElement(HTMLElement) {
         return this._inputElement.checked;
     }
 
+    /**
+     * Zet de checkbox waarde.
+     * 
+     * @Param {Boolean}
+     */
+    set checked(value) {
+        if (value && !this.checked || !value && this.checked) {
+            this.toggle();
+        }
+    }
+
     _toggle() {
         let checked;
         const parent = this.getRootNode().host;

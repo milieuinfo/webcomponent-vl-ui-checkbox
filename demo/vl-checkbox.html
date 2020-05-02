@@ -1,129 +1,59 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>vl-checkbox voorbeeld</title>
-        <script type="module" src="demo.js"></script>
-        <script type="module" src="/src/vl-checkbox.js"></script>
-        
-        <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-core/dist/style.css"/>
-    </head>
 
-	<body>
-        <h1>vl-ui-checkbox demo</h1>
-        <p>
-        <a href="https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-checkbox">
-            Meer voorbeelden en documentatie</a>.
-        </p>
+<head>
+    <title>vl-checkbox voorbeeld</title>
+    <script type="module" src="/src/vl-checkbox.js"></script>
+    <script type="module" src="/node_modules/vl-ui-demo/dist/vl-demo-all.js"></script>
 
-        <div>
-            <h2>Checkbox</h2>
-            <pre>
-                <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 1"&gt;&lt;/vl-checkbox&gt;
-                </code>
-            </pre>
-            <div class="demo">
-                <vl-checkbox id="checkbox-1" label="Optie 1"></vl-checkbox>
-                <script>
-                    document.querySelector('#checkbox-1').addEventListener('input', (e) => {
-                        console.log(e.srcElement.id + ' value: ' + e.srcElement.checked);
-                    });
-                </script>
-            </div>
-        </div>
+    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-core/dist/style.css" />
+</head>
 
-        <div>
-            <h2>Checkbox block</h2>
-            <pre>
-                <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 2" block&gt;&lt;/vl-checkbox&gt;
-                </code>
-            </pre>
-            <div class="demo">
-                <vl-checkbox id="checkbox-block" label="Optie 2" block></vl-checkbox>
-            </div>
-        </div>
+<body>
+    <vl-demo-page data-vl-webcomponent="vl-checkbox"
+        data-vl-link="https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-checkbox">
+        <vl-demo data-vl-title="Checkbox">
+            <vl-checkbox id="checkbox-1" label="Optie 1"></vl-checkbox>
+            <script>
+                document.querySelector('#checkbox-1').addEventListener('input', (e) => {
+                    console.log(e.srcElement.id + ' value: ' + e.srcElement.checked);
+                });
+            </script>
+        </vl-demo>
 
-        <div>
-            <h2>Checkbox error</h2>
-            <pre>
-                <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 3" error&gt;&lt;/vl-checkbox&gt;
-                </code>
-            </pre>
-            <div class="demo">
-                <vl-checkbox id="checkbox-error" label="Optie 3" error></vl-checkbox>
-            </div>
-        </div>
+        <vl-demo data-vl-title="Checkbox block">
+            <vl-checkbox id="checkbox-block" label="Optie 2" block></vl-checkbox>
+        </vl-demo>
 
-        <div>
-            <h2>Checkbox disabled</h2>
-            <pre>
-                <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 4" disabled&gt;&lt;/vl-checkbox&gt;
-                    &lt;vl-checkbox label="Optie 5" checked disabled&gt;&lt;/vl-checkbox&gt;
-                </code>
-            </pre>
-            <div class="demo">
-                <vl-checkbox id="checkbox-disabled-uitgevinkt" label="Optie 4" disabled></vl-checkbox>
-                <vl-checkbox id="checkbox-disabled-aangevinkt" label="Optie 5" checked disabled></vl-checkbox>
-            </div>
-        </div>
+        <vl-demo data-vl-title="Checkbox error">
+            <vl-checkbox id="checkbox-error" label="Optie 3" error></vl-checkbox>
+        </vl-demo>
 
-        <div>
-            <h2>Checkbox single</h2>
-            <pre>
-                <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 6" single&gt;&lt;/vl-checkbox&gt;
-                </code>
-            </pre>
-            <div class="demo">
-                <vl-checkbox id="checkbox-single" label="Optie 6" single></vl-checkbox>
-            </div>
-        </div>
+        <vl-demo data-vl-title="Checkbox disabled">
+            <vl-checkbox id="checkbox-disabled-uitgevinkt" label="Optie 4" disabled></vl-checkbox>
+            <vl-checkbox id="checkbox-disabled-aangevinkt" label="Optie 5" checked disabled></vl-checkbox>
+        </vl-demo>
 
-        <div>
-            <h2>Checkbox switch</h2>
-            <pre>
-                <code class="line-numbers language-markup">
-                    &lt;vl-checkbox switch&gt;&lt;/vl-checkbox&gt;
-                </code>
-            </pre>
-            <div class="demo">
-                <vl-checkbox id="checkbox-switch" switch></vl-checkbox>
-            </div>
-        </div>
+        <vl-demo data-vl-title="Checkbox single">
+            <vl-checkbox id="checkbox-single" label="Optie 6" single></vl-checkbox>
+        </vl-demo>
 
-        <div>
-            <h2>Checkboxes multiple</h2>
-            <pre>
-                <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 1" value="1" checked="[]"&gt;&lt;/vl-checkbox&gt;
-                    &lt;vl-checkbox label="Optie 2" value="2" checked="[]"&gt;&lt;/vl-checkbox&gt;
-                    &lt;vl-checkbox label="Optie 3" value="3" checked="[]"&gt;&lt;/vl-checkbox&gt;
-                </code>
-            </pre>
-            <div class="demo">
-                <vl-checkbox id="checkbox-multi-1" label="Optie 1" value="1" checked="[]"></vl-checkbox>
-                <vl-checkbox id="checkbox-multi-2" label="Optie 2" value="2" checked="[]"></vl-checkbox>
-                <vl-checkbox id="checkbox-multi-3" label="Optie 3" value="3" checked="[]"></vl-checkbox>
-            </div>
-        </div>
+        <vl-demo data-vl-title="Checkbox switch">
+            <vl-checkbox id="checkbox-switch" switch></vl-checkbox>
+        </vl-demo>
 
-        <div>
-            <h2>Checkboxes multiple standaard checked</h2>
-            <pre>
-                <code class="line-numbers language-markup">
-                    &lt;vl-checkbox label="Optie 1" value="1" checked="[2,3]"&gt;&lt;/vl-checkbox&gt;
-                    &lt;vl-checkbox label="Optie 2" value="2" checked="[2,3]"&gt;&lt;/vl-checkbox&gt;
-                    &lt;vl-checkbox label="Optie 3" value="3" checked="[2,3]"&gt;&lt;/vl-checkbox&gt;
-                </code>
-            </pre>
-            <div class="demo">
-                <vl-checkbox id="checkbox-multi-st-1" label="Optie 1" value="1" checked="[2,3]"></vl-checkbox>
-                <vl-checkbox id="checkbox-multi-st-2" label="Optie 2" value="2" checked="[2,3]"></vl-checkbox>
-                <vl-checkbox id="checkbox-multi-st-3" label="Optie 3" value="3" checked="[2,3]"></vl-checkbox>
-            </div>
-        </div>
-    </body>
+        <vl-demo data-vl-title="Checkboxes multiple">
+            <vl-checkbox id="checkbox-multi-1" label="Optie 1" value="1" checked="[]"></vl-checkbox>
+            <vl-checkbox id="checkbox-multi-2" label="Optie 2" value="2" checked="[]"></vl-checkbox>
+            <vl-checkbox id="checkbox-multi-3" label="Optie 3" value="3" checked="[]"></vl-checkbox>
+        </vl-demo>
+
+        <vl-demo data-vl-title="Checkboxes multiple standaard checked">
+            <vl-checkbox id="checkbox-multi-st-1" label="Optie 1" value="1" checked="[2,3]"></vl-checkbox>
+            <vl-checkbox id="checkbox-multi-st-2" label="Optie 2" value="2" checked="[2,3]"></vl-checkbox>
+            <vl-checkbox id="checkbox-multi-st-3" label="Optie 3" value="3" checked="[2,3]"></vl-checkbox>
+        </vl-demo>
+    </vl-demo-page>
+</body>
+
 </html>
