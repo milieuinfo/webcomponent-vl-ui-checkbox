@@ -36,6 +36,7 @@ export class VlCheckbox extends VlElement(HTMLElement) {
                 <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
                 <div class="vl-checkbox__label">
                     <i class="vl-checkbox__box" aria-hidden="true"></i>
+                    <slot></slot>
                 </div>
             </label>
         `);
@@ -56,6 +57,10 @@ export class VlCheckbox extends VlElement(HTMLElement) {
 
     get _checkboxLabelElement() {
         return this._element.querySelector('.vl-checkbox__label');
+    }
+
+    get _checkboxLabelSlotElement() {
+        return this._element.querySelector('slot');
     }
 
     /**
@@ -95,8 +100,13 @@ export class VlCheckbox extends VlElement(HTMLElement) {
     }
 
     _labelChangedCallback(oldValue, newValue) {
-        this._label = newValue;
-        this._checkboxLabelElement.append(this._label);
+        if (newValue) {
+            this._label = newValue;
+            this._checkboxLabelElement.append(this._label);
+            this._checkboxLabelSlotElement.remove();
+        } else {
+            this._checkboxLabelElement.insertAdjacentHTML('afterbegin', `<slot></slot>`);
+        }
     }
 
     _valueChangedCallback(oldValue, newValue) {

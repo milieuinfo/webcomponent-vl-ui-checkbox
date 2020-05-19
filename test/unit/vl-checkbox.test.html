@@ -26,6 +26,15 @@
     </template>
   </test-fixture>
 
+  <test-fixture id="vl-checkboxes-slot-fixture">
+    <template>
+      <vl-checkbox label="optie 1"></vl-checkbox>
+      <vl-checkbox>
+        <span>optie 1</span>
+      </vl-checkbox>
+    </template>
+  </test-fixture>
+
   <script>
     suite('<vl-checkbox>', () => {
       const should = chai.should();
@@ -225,6 +234,23 @@
           done();
         });
         checkboxInput.click();
+      });
+
+      test('label kan via attribuut en slot gedefinieerd worden', () => {
+        const checkboxes = fixture('vl-checkboxes-slot-fixture');
+        assert.equal(checkboxes[0]._checkboxLabelElement.innerText, checkboxes[0].getAttribute('label'));
+        assert.equal(checkboxes[1]._checkboxLabelElement.querySelector('slot').assignedElements()[0], checkboxes[1].children[0]);
+      });
+
+      test('het label slot element zal alleen aanwezig zijn wanneer er geen label attribuut gebruikt wordt', () => {
+        const checkboxes = fixture('vl-checkboxes-slot-fixture');
+        const checkbox = checkboxes[0];
+        should.not.exist(checkbox._checkboxLabelElement.querySelector('slot'));
+        checkbox.removeAttribute('label');
+        should.exist(checkbox._checkboxLabelElement.querySelector('slot'));
+        const text = 'slot text';
+        checkbox.insertAdjacentHTML('afterbegin', `<span>${text}</span>`);
+        assert.equal(checkbox._checkboxLabelElement.querySelector('slot').assignedElements()[0].innerText, text);
       });
     });
   </script>

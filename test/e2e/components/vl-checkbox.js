@@ -14,6 +14,11 @@ class VlCheckbox extends VlElement {
         return this.getText();
     }
 
+    async _getLabelSlotElements() {
+        const slot = await this.shadowRoot.findElement(By.css('slot'));
+        return this.getAssignedElements(slot);
+    }
+
     async isChecked() {
         const input = await this._getInput();
         return this.driver.executeScript('return arguments[0].checked', input);
