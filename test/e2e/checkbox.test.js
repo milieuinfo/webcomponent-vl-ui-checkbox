@@ -10,17 +10,17 @@ describe('vl-checkbox', async () => {
     });
 
     it('als gebruiker kan ik een standaard checkbox aan- en uitvinken', async () => {
-        const checkbox1 = await vlCheckboxPage.getCheckbox(1);
-        await kanCheckboxAanEnUitvinken(checkbox1);
+        const checkbox = await vlCheckboxPage.getDefaultCheckbox(1);
+        await kanCheckboxAanEnUitvinken(checkbox);
     });
 
     it('als gebruiker zie ik een label bij de checkbox', async () => {
-        const checkbox1 = await vlCheckboxPage.getCheckbox(1);
-        await assert.eventually.equal(checkbox1.getLabel(), 'Optie 1');
+        const checkbox = await vlCheckboxPage.getDefaultCheckbox(1);
+        await assert.eventually.equal(checkbox.getLabel(), 'Optie 1');
     });
 
     it('als gebruiker kan ik het verschil zien tussen een block en een gewone checkbox', async () => {
-        const checkbox = await vlCheckboxPage.getCheckbox(1);
+        const checkbox = await vlCheckboxPage.getDefaultCheckbox(1);
         const blockCheckbox = await vlCheckboxPage.getCheckboxBlock();
 
         await assert.eventually.isFalse(checkbox.isBlock());
@@ -28,7 +28,7 @@ describe('vl-checkbox', async () => {
     });
 
     it('als gebruiker kan ik het verschil zien tussen een error en een gewone checkbox', async () => {
-        const checkbox = await vlCheckboxPage.getCheckbox(1);
+        const checkbox = await vlCheckboxPage.getDefaultCheckbox(1);
         const errorCheckbox = await vlCheckboxPage.getCheckboxError();
 
         await assert.eventually.isFalse(checkbox.isError());
@@ -36,23 +36,23 @@ describe('vl-checkbox', async () => {
     });
 
     it('als gebruiker kan ik een disabled checkbox niet aan- of uitvinken', async() => {
-        const checkboxUitgevinkt = await vlCheckboxPage.getCheckboxDisabledUitgevinkt();
-        const checkboxAangevinkt = await vlCheckboxPage.getCheckboxDisabledAangevinkt();
+        const checkboxUnchecked = await vlCheckboxPage.getCheckboxDisabledUnchecked();
+        const checkboxChecked = await vlCheckboxPage.getCheckboxDisabledChecked();
 
-        await assert.eventually.isTrue(checkboxUitgevinkt.isDisabled());
-        await assert.eventually.isTrue(checkboxAangevinkt.isDisabled());
+        await assert.eventually.isTrue(checkboxUnchecked.isDisabled());
+        await assert.eventually.isTrue(checkboxChecked.isDisabled());
         
-        await assert.eventually.isFalse(checkboxUitgevinkt.isChecked());
-        await checkboxUitgevinkt.click();
-        await assert.eventually.isFalse(checkboxUitgevinkt.isChecked());
+        await assert.eventually.isFalse(checkboxUnchecked.isChecked());
+        await checkboxUnchecked.click();
+        await assert.eventually.isFalse(checkboxUnchecked.isChecked());
 
-        await assert.eventually.isTrue(checkboxAangevinkt.isChecked());
-        await checkboxAangevinkt.click();
-        await assert.eventually.isTrue(checkboxAangevinkt.isChecked());
+        await assert.eventually.isTrue(checkboxChecked.isChecked());
+        await checkboxChecked.click();
+        await assert.eventually.isTrue(checkboxChecked.isChecked());
     });
 
     it('als gebruiker kan ik het verschil zien tussen een single en een gewone checkbox', async () => {
-        const checkbox = await vlCheckboxPage.getCheckbox(1);
+        const checkbox = await vlCheckboxPage.getDefaultCheckbox(1);
         const singleCheckbox = await vlCheckboxPage.getCheckboxSingle();
 
         await assert.eventually.isFalse(checkbox.isSingle());

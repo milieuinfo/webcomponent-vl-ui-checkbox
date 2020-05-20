@@ -23,9 +23,9 @@
                 </code>
             </pre>
             <div class="demo">
-                <vl-checkbox id="checkbox-1" label="Optie 1"></vl-checkbox>
+                <vl-checkbox id="checkbox-default-1" label="Optie 1"></vl-checkbox>
                 <script>
-                    document.querySelector('#checkbox-1').addEventListener('input', (e) => {
+                    document.querySelector('#checkbox-default-1').addEventListener('input', (e) => {
                         console.log(e.srcElement.id + ' value: ' + e.srcElement.checked);
                     });
                 </script>
@@ -65,8 +65,8 @@
                 </code>
             </pre>
             <div class="demo">
-                <vl-checkbox id="checkbox-disabled-uitgevinkt" label="Optie 4" disabled></vl-checkbox>
-                <vl-checkbox id="checkbox-disabled-aangevinkt" label="Optie 5" checked disabled></vl-checkbox>
+                <vl-checkbox id="checkbox-disabled-unchecked" label="Optie 4" disabled></vl-checkbox>
+                <vl-checkbox id="checkbox-disabled-checked" label="Optie 5" checked disabled></vl-checkbox>
             </div>
         </div>
 

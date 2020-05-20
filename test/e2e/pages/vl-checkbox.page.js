@@ -6,8 +6,8 @@ class VlCheckboxPage extends Page {
         return new VlCheckbox(this.driver, selector);
     }
 
-    async getCheckbox(number) {
-        return this._getCheckbox(`#checkbox-${number}`);
+    async getDefaultCheckbox(number) {
+        return this._getCheckbox(`#checkbox-default-${number}`);
     }
 
     async getCheckboxBlock() {
@@ -18,12 +18,12 @@ class VlCheckboxPage extends Page {
         return this._getCheckbox('#checkbox-error');
     }
 
-    async getCheckboxDisabledUitgevinkt() {
-        return this._getCheckbox('#checkbox-disabled-uitgevinkt');
+    async getCheckboxDisabledUnchecked() {
+        return this._getCheckbox('#checkbox-disabled-unchecked');
     }
 
-    async getCheckboxDisabledAangevinkt() {
-        return this._getCheckbox('#checkbox-disabled-aangevinkt');
+    async getCheckboxDisabledChecked() {
+        return this._getCheckbox('#checkbox-disabled-checked');
     }
 
     async getCheckboxSingle() {
