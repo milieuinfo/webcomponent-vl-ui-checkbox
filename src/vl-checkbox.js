@@ -29,17 +29,17 @@ export class VlCheckbox extends vlElement(HTMLElement) {
 
   constructor() {
     super(`
-            <style>
-                @import '/src/style.css';
-            </style>
+      <style>
+          @import '/src/style.css';
+      </style>
 
-            <label id="label" class="vl-checkbox" for="checkbox">
-                <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
-                <div class="vl-checkbox__label">
-                    <i class="vl-checkbox__box" aria-hidden="true"></i>
-                </div>
-            </label>
-        `);
+      <label id="label" class="vl-checkbox" for="checkbox">
+          <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
+          <div class="vl-checkbox__label">
+              <i class="vl-checkbox__box" aria-hidden="true"></i>
+          </div>
+      </label>
+    `);
   }
 
   connectedCallback() {
