@@ -1,43 +1,49 @@
-const { VlElement } = require('vl-ui-core').Test;
-const { By } = require('selenium-webdriver');
+const {VlElement} = require('vl-ui-core').Test;
+const {By} = require('selenium-webdriver');
 
 class VlCheckbox extends VlElement {
-    async _getInput() {
-        return this.shadowRoot.findElement(By.css('#checkbox'));
-    }
+  async getLabel() {
+    const label = await this._getLabel();
+    const text = await label.getText();
+    return text.trim();
+  }
 
-    async _hasClass(clazz) {
-        return this.shadowRoot.hasClass(clazz);
-    }
+  async isChecked() {
+    const input = await this._getInput();
+    return this.driver.executeScript('return arguments[0].checked', input);
+  }
 
-    async getLabel() {
-        return this.getText();
-    }
+  async isBlock() {
+    return this._hasClass('vl-checkbox--block');
+  }
 
-    async isChecked() {
-        const input = await this._getInput();
-        return this.driver.executeScript('return arguments[0].checked', input);
-    }
+  async isError() {
+    return this._hasClass('vl-checkbox--error');
+  }
 
-    async isBlock() {
-        return this._hasClass('vl-checkbox--block');
-    }
+  async isSingle() {
+    return this._hasClass('vl-checkbox--single');
+  }
 
-    async isError() {
-        return this._hasClass('vl-checkbox--error');
-    }
+  async isSwitch() {
+    return this._hasClass('vl-checkbox--switch');
+  }
 
-    async isSingle() {
-        return this._hasClass('vl-checkbox--single');
-    }
+  async isDisabled() {
+    return this._hasClass('vl-checkbox--disabled');
+  }
 
-    async isSwitch() {
-        return this._hasClass('vl-checkbox--switch');
-    }
+  async _getInput() {
+    return this.shadowRoot.findElement(By.css('#checkbox'));
+  }
 
-    async isDisabled() {
-        return this._hasClass('vl-checkbox--disabled');
-    }
+  async _getLabel() {
+    return this.shadowRoot.findElement(By.css('.vl-checkbox__label'));
+  }
+
+  async _hasClass(clazz) {
+    return this.shadowRoot.hasClass(clazz);
+  }
 }
 
 module.exports = VlCheckbox;
