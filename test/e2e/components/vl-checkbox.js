@@ -2,16 +2,10 @@ const {VlElement} = require('vl-ui-core').Test;
 const {By} = require('selenium-webdriver');
 
 class VlCheckbox extends VlElement {
-  async _getInput() {
-    return this.shadowRoot.findElement(By.css('#checkbox'));
-  }
-
-  async _hasClass(clazz) {
-    return this.shadowRoot.hasClass(clazz);
-  }
-
   async getLabel() {
-    return this.getText();
+    const label = await this._getLabel();
+    const text = await label.getText();
+    return text.trim();
   }
 
   async isChecked() {
@@ -37,6 +31,18 @@ class VlCheckbox extends VlElement {
 
   async isDisabled() {
     return this._hasClass('vl-checkbox--disabled');
+  }
+
+  async _getInput() {
+    return this.shadowRoot.findElement(By.css('#checkbox'));
+  }
+
+  async _getLabel() {
+    return this.shadowRoot.findElement(By.css('.vl-checkbox__label'));
+  }
+
+  async _hasClass(clazz) {
+    return this.shadowRoot.hasClass(clazz);
   }
 }
 
