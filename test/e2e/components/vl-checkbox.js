@@ -4,8 +4,7 @@ const {By} = require('selenium-webdriver');
 class VlCheckbox extends VlElement {
   async getLabel() {
     const label = await this._getLabel();
-    const text = await label.getText();
-    return text.trim();
+    return label.getText();
   }
 
   async isChecked() {
