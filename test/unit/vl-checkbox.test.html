@@ -8,7 +8,7 @@
 
   <script type="module" src="../../src/vl-checkbox.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="/src/style.css"/>
+  <link rel="stylesheet" type="text/css" href="/src/style.css" />
 </head>
 
 <body>
@@ -140,7 +140,6 @@
 
       test('toggle zal een event gooien met de waarde van het boolean checked attribuut', (done) => {
         const checkbox = fixture('vl-checkbox-fixture');
-        const checkboxInput = checkbox.shadowRoot.querySelector('input');
         checkbox.addEventListener('input', (e) => {
           if (e.detail) {
             assert.isTrue(e.detail);
@@ -198,7 +197,6 @@
       test('toggle zal een event gooien met het array checked attribuut bij een checkbox met een array checked attribuut', (done) => {
         const checkboxes = fixture('vl-checkboxes-fixture');
         const checkbox = checkboxes[0];
-        const checkboxInput = checkbox.shadowRoot.querySelector('input');
         checkbox.setAttribute('checked', '[2,3]');
         checkbox.addEventListener('input', (e) => {
           if (e.detail) {
