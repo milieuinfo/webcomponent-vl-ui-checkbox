@@ -18,7 +18,7 @@ import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-checkbox.html|Demo}
  */
-export class VlCheckbox extends VlElement(HTMLElement) {
+export class VlCheckbox extends vlElement(HTMLElement) {
   static get _observedAttributes() {
     return ['label', 'value', 'checked'];
   }
@@ -65,19 +65,19 @@ export class VlCheckbox extends VlElement(HTMLElement) {
   }
 
   /**
-     * Triggert een toggle van de checkbox zonder te klikken op de checkbox.
-     *
-     * @Return {void}
-     */
+   * Triggert een toggle van de checkbox zonder te klikken op de checkbox.
+   *
+   * @Return {void}
+   */
   toggle() {
     this._inputElement.click();
   }
 
   /**
-     * Geeft de waarde van de checkbox terug.
-     *
-     * @Return {boolean}
-     */
+   * Geeft de waarde van de checkbox terug.
+   *
+   * @Return {boolean}
+   */
   get checked() {
     return this._inputElement.checked;
   }
