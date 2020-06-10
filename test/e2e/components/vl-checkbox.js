@@ -11,7 +11,8 @@ class VlCheckbox extends VlElement {
   }
 
   async getLabel() {
-    return this.getText();
+    const label = await this._getLabel();
+    return label.getText();
   }
 
   async _getLabelSlotElements() {
@@ -42,6 +43,10 @@ class VlCheckbox extends VlElement {
 
   async isDisabled() {
     return this._hasClass('vl-checkbox--disabled');
+  }
+
+  async _getLabel() {
+    return this.shadowRoot.findElement(By.css('.vl-checkbox__label'));
   }
 }
 

@@ -12,7 +12,7 @@
     <body>
         <vl-demo-page data-vl-webcomponent="vl-checkbox" data-vl-link="https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-checkbox">
             <vl-demo data-vl-title="Checkbox">
-                <vl-checkbox id="checkbox-1" label="Optie 1"></vl-checkbox>
+                <vl-checkbox id="checkbox-default-1" label="Optie 1"></vl-checkbox>
                 <script>
                     document.querySelector('#checkbox-1').addEventListener('input', (e) => {
                       console.log(e.srcElement.id + ' value: ' + e.srcElement.checked);
@@ -29,8 +29,8 @@
             </vl-demo>
     
             <vl-demo data-vl-title="Checkbox disabled">
-                <vl-checkbox id="checkbox-disabled-uitgevinkt" label="Optie 4" disabled></vl-checkbox>
-                <vl-checkbox id="checkbox-disabled-aangevinkt" label="Optie 5" checked disabled></vl-checkbox>
+                <vl-checkbox id="checkbox-disabled-unchecked" label="Optie 4" disabled></vl-checkbox>
+                <vl-checkbox id="checkbox-disabled-checked" label="Optie 5" checked disabled></vl-checkbox>
             </vl-demo>
     
             <vl-demo data-vl-title="Checkbox single">
