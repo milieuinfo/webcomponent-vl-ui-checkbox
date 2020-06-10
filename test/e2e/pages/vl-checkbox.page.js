@@ -6,12 +6,8 @@ class VlCheckboxPage extends Page {
     return new VlCheckbox(this.driver, selector);
   }
 
-  async getCheckbox1() {
-    return this._getCheckbox('#checkbox-1');
-  }
-
-  async getCheckbox2() {
-    return this._getCheckbox('#checkbox-2');
+  async getDefaultCheckbox(number) {
+    return this._getCheckbox(`#checkbox-default-${number}`);
   }
 
   async getCheckboxBlock() {
@@ -22,12 +18,12 @@ class VlCheckboxPage extends Page {
     return this._getCheckbox('#checkbox-error');
   }
 
-  async getCheckboxDisabledUitgevinkt() {
-    return this._getCheckbox('#checkbox-disabled-uitgevinkt');
+  async getCheckboxDisabledUnchecked() {
+    return this._getCheckbox('#checkbox-disabled-unchecked');
   }
 
-  async getCheckboxDisabledAangevinkt() {
-    return this._getCheckbox('#checkbox-disabled-aangevinkt');
+  async getCheckboxDisabledChecked() {
+    return this._getCheckbox('#checkbox-disabled-checked');
   }
 
   async getCheckboxSingle() {
@@ -38,28 +34,16 @@ class VlCheckboxPage extends Page {
     return this._getCheckbox('#checkbox-switch');
   }
 
-  async getCheckboxMulti1() {
-    return this._getCheckbox('#checkbox-multi-1');
+  async getCheckboxMulti(number) {
+    return this._getCheckbox(`#checkbox-multi-${number}`);
   }
 
-  async getCheckboxMulti2() {
-    return this._getCheckbox('#checkbox-multi-2');
+  async getCheckboxMultiStandard(number) {
+    return this._getCheckbox(`#checkbox-multi-st-${number}`);
   }
 
-  async getCheckboxMulti3() {
-    return this._getCheckbox('#checkbox-multi-3');
-  }
-
-  async getCheckboxMultiStandard1() {
-    return this._getCheckbox('#checkbox-multi-st-1');
-  }
-
-  async getCheckboxMultiStandard2() {
-    return this._getCheckbox('#checkbox-multi-st-2');
-  }
-
-  async getCheckboxMultiStandard3() {
-    return this._getCheckbox('#checkbox-multi-st-3');
+  async getCheckboxSlot() {
+    return this._getCheckbox('#checkbox-slot-1');
   }
 
   async load() {

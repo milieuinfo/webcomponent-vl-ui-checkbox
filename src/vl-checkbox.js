@@ -29,17 +29,18 @@ export class VlCheckbox extends vlElement(HTMLElement) {
 
   constructor() {
     super(`
-      <style>
-          @import '/src/style.css';
-      </style>
+            <style>
+                @import '/src/style.css';
+            </style>
 
-      <label id="label" class="vl-checkbox" for="checkbox">
-          <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
-          <div class="vl-checkbox__label">
-              <i class="vl-checkbox__box" aria-hidden="true"></i>
-          </div>
-      </label>
-    `);
+            <label id="label" class="vl-checkbox" for="checkbox">
+                <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
+                <div class="vl-checkbox__label">
+                    <i class="vl-checkbox__box" aria-hidden="true"></i>
+                    <slot></slot>
+                </div>
+            </label>
+        `);
   }
 
   connectedCallback() {
@@ -59,33 +60,26 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     return this._element.querySelector('.vl-checkbox__label');
   }
 
+  get _checkboxLabelSlotElement() {
+    return this._element.querySelector('slot');
+  }
+
   /**
-     * Triggert een toggle van de checkbox zonder te klikken op de checkbox.
-     *
-     * @Return {void}
-     */
+   * Triggert een toggle van de checkbox zonder te klikken op de checkbox.
+   *
+   * @Return {void}
+   */
   toggle() {
     this._inputElement.click();
   }
 
   /**
-     * Geeft de waarde van de checkbox terug.
-     *
-     * @Return {boolean}
-     */
+   * Geeft de waarde van de checkbox terug.
+   *
+   * @Return {boolean}
+   */
   get checked() {
     return this._inputElement.checked;
-  }
-
-  /**
-     * Zet de checkbox waarde.
-     *
-     * @Param {Boolean} value
-     */
-  set checked(value) {
-    if (value && !this.checked || !value && this.checked) {
-      this.toggle();
-    }
   }
 
   _toggle() {
@@ -107,8 +101,13 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   _labelChangedCallback(oldValue, newValue) {
-    this._label = newValue;
-    this._checkboxLabelElement.append(this._label);
+    if (newValue) {
+      this._label = newValue;
+      this._checkboxLabelElement.append(this._label);
+      this._checkboxLabelSlotElement.remove();
+    } else {
+      this._checkboxLabelElement.insertAdjacentHTML('afterbegin', `<slot></slot>`);
+    }
   }
 
   _valueChangedCallback(oldValue, newValue) {

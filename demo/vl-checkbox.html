@@ -1,60 +1,63 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>vl-checkbox voorbeeld</title>
+        <script type="module" src="/node_modules/vl-ui-demo/dist/vl-demo-all.js"></script>
+    
+        <script type="module" src="/src/vl-checkbox.js"></script>
+    
+        <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-core/dist/style.css" />
+    </head>
 
-<head>
-    <title>vl-checkbox voorbeeld</title>
-    <script type="module" src="/node_modules/vl-ui-demo/dist/vl-demo-all.js"></script>
-
-    <script type="module" src="/src/vl-checkbox.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-core/dist/style.css" />
-</head>
-
-<body>
-    <vl-demo-page data-vl-webcomponent="vl-checkbox"
-        data-vl-link="https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-checkbox">
-        <vl-demo data-vl-title="Checkbox">
-            <vl-checkbox id="checkbox-1" label="Optie 1"></vl-checkbox>
-            <script>
-                document.querySelector('#checkbox-1').addEventListener('input', (e) => {
-                  console.log(e.srcElement.id + ' value: ' + e.srcElement.checked);
-                });
-            </script>
-        </vl-demo>
-
-        <vl-demo data-vl-title="Checkbox block">
-            <vl-checkbox id="checkbox-block" label="Optie 2" block></vl-checkbox>
-        </vl-demo>
-
-        <vl-demo data-vl-title="Checkbox error">
-            <vl-checkbox id="checkbox-error" label="Optie 3" error></vl-checkbox>
-        </vl-demo>
-
-        <vl-demo data-vl-title="Checkbox disabled">
-            <vl-checkbox id="checkbox-disabled-uitgevinkt" label="Optie 4" disabled></vl-checkbox>
-            <vl-checkbox id="checkbox-disabled-aangevinkt" label="Optie 5" checked disabled></vl-checkbox>
-        </vl-demo>
-
-        <vl-demo data-vl-title="Checkbox single">
-            <vl-checkbox id="checkbox-single" label="Optie 6" single></vl-checkbox>
-        </vl-demo>
-
-        <vl-demo data-vl-title="Checkbox switch">
-            <vl-checkbox id="checkbox-switch" switch></vl-checkbox>
-        </vl-demo>
-
-        <vl-demo data-vl-title="Checkboxes multiple">
-            <vl-checkbox id="checkbox-multi-1" label="Optie 1" value="1" checked="[]"></vl-checkbox>
-            <vl-checkbox id="checkbox-multi-2" label="Optie 2" value="2" checked="[]"></vl-checkbox>
-            <vl-checkbox id="checkbox-multi-3" label="Optie 3" value="3" checked="[]"></vl-checkbox>
-        </vl-demo>
-
-        <vl-demo data-vl-title="Checkboxes multiple standaard checked">
-            <vl-checkbox id="checkbox-multi-st-1" label="Optie 1" value="1" checked="[2,3]"></vl-checkbox>
-            <vl-checkbox id="checkbox-multi-st-2" label="Optie 2" value="2" checked="[2,3]"></vl-checkbox>
-            <vl-checkbox id="checkbox-multi-st-3" label="Optie 3" value="3" checked="[2,3]"></vl-checkbox>
-        </vl-demo>
-    </vl-demo-page>
-</body>
-
+    <body>
+        <vl-demo-page data-vl-webcomponent="vl-checkbox" data-vl-link="https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-checkbox">
+            <vl-demo data-vl-title="Checkbox">
+                <vl-checkbox id="checkbox-1" label="Optie 1"></vl-checkbox>
+                <script>
+                    document.querySelector('#checkbox-1').addEventListener('input', (e) => {
+                      console.log(e.srcElement.id + ' value: ' + e.srcElement.checked);
+                    });
+                </script>
+            </vl-demo>
+    
+            <vl-demo data-vl-title="Checkbox block">
+                <vl-checkbox id="checkbox-block" label="Optie 2" block></vl-checkbox>
+            </vl-demo>
+    
+            <vl-demo data-vl-title="Checkbox error">
+                <vl-checkbox id="checkbox-error" label="Optie 3" error></vl-checkbox>
+            </vl-demo>
+    
+            <vl-demo data-vl-title="Checkbox disabled">
+                <vl-checkbox id="checkbox-disabled-uitgevinkt" label="Optie 4" disabled></vl-checkbox>
+                <vl-checkbox id="checkbox-disabled-aangevinkt" label="Optie 5" checked disabled></vl-checkbox>
+            </vl-demo>
+    
+            <vl-demo data-vl-title="Checkbox single">
+                <vl-checkbox id="checkbox-single" label="Optie 6" single></vl-checkbox>
+            </vl-demo>
+    
+            <vl-demo data-vl-title="Checkbox switch">
+                <vl-checkbox id="checkbox-switch" switch></vl-checkbox>
+            </vl-demo>
+    
+            <vl-demo data-vl-title="Checkboxes multiple">
+                <vl-checkbox id="checkbox-multi-1" label="Optie 1" value="1" checked="[]"></vl-checkbox>
+                <vl-checkbox id="checkbox-multi-2" label="Optie 2" value="2" checked="[]"></vl-checkbox>
+                <vl-checkbox id="checkbox-multi-3" label="Optie 3" value="3" checked="[]"></vl-checkbox>
+            </vl-demo>
+    
+            <vl-demo data-vl-title="Checkboxes multiple standaard checked">
+                <vl-checkbox id="checkbox-multi-st-1" label="Optie 1" value="1" checked="[2,3]"></vl-checkbox>
+                <vl-checkbox id="checkbox-multi-st-2" label="Optie 2" value="2" checked="[2,3]"></vl-checkbox>
+                <vl-checkbox id="checkbox-multi-st-3" label="Optie 3" value="3" checked="[2,3]"></vl-checkbox>
+            </vl-demo>
+    
+            <vl-demo data-vl-title="Checkboxe met slot element">
+                <vl-checkbox id="checkbox-slot-1" value="1">
+                    <span>Optie <strong>1</strong></span>
+                </vl-checkbox>
+            </vl-demo>
+        </vl-demo-page>
+    </body>
 </html>
