@@ -6,7 +6,6 @@ import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
  * @classdesc De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit een lijst. Gebruik de checkbox in formulieren.
  *
  * @extends HTMLElement
- * @mixin vlElement
  *
  * @property {boolean} block - Attribuut wordt gebruikt om ervoor te zorgen dat de checkbox getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.
  * @property {boolean} error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
