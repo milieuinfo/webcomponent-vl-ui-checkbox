@@ -47,7 +47,7 @@ class VlCheckboxPage extends Page {
   }
 
   async load() {
-    await super.load(Config.baseUrl + '/demo/vl-checkbox.html?no-header=true&no-footer=true');
+    await super.load(Config.baseUrl + '/demo/vl-checkbox.html');
   }
 }
 
