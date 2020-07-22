@@ -5,7 +5,7 @@ const VlCheckboxPage = require('./pages/vl-checkbox.page');
 describe('vl-checkbox', async () => {
   const vlCheckboxPage = new VlCheckboxPage(driver);
 
-  before(() => {
+  before(async () => {
     return vlCheckboxPage.load();
   });
 
