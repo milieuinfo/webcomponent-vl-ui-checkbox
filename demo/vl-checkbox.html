@@ -12,49 +12,49 @@
     <body>
         <vl-demo-page data-vl-webcomponent="vl-checkbox" data-vl-link="https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-checkbox">
             <vl-demo data-vl-title="Checkbox">
-                <vl-checkbox id="checkbox-default-1" label="Optie 1"></vl-checkbox>
+                <vl-checkbox id="checkbox-default-1" data-vl-label="Optie 1"></vl-checkbox>
                 <script>
-                    document.querySelector('#checkbox-1').addEventListener('input', (e) => {
+                    document.querySelector('#checkbox-default-1').addEventListener('input', (e) => {
                       console.log(e.srcElement.id + ' value: ' + e.srcElement.checked);
                     });
                 </script>
             </vl-demo>
     
             <vl-demo data-vl-title="Checkbox block">
-                <vl-checkbox id="checkbox-block" label="Optie 2" block></vl-checkbox>
+                <vl-checkbox id="checkbox-block" data-vl-label="Optie 2" data-vl-block></vl-checkbox>
             </vl-demo>
     
             <vl-demo data-vl-title="Checkbox error">
-                <vl-checkbox id="checkbox-error" label="Optie 3" error></vl-checkbox>
+                <vl-checkbox id="checkbox-error" data-vl-label="Optie 3" data-vl-error></vl-checkbox>
             </vl-demo>
     
             <vl-demo data-vl-title="Checkbox disabled">
-                <vl-checkbox id="checkbox-disabled-unchecked" label="Optie 4" disabled></vl-checkbox>
-                <vl-checkbox id="checkbox-disabled-checked" label="Optie 5" checked disabled></vl-checkbox>
+                <vl-checkbox id="checkbox-disabled-unchecked" data-vl-label="Optie 4" data-vl-disabled></vl-checkbox>
+                <vl-checkbox id="checkbox-disabled-checked" data-vl-label="Optie 5" data-vl-checked data-vl-disabled></vl-checkbox>
             </vl-demo>
     
             <vl-demo data-vl-title="Checkbox single">
-                <vl-checkbox id="checkbox-single" label="Optie 6" single></vl-checkbox>
+                <vl-checkbox id="checkbox-single" data-vl-label="Optie 6" data-vl-single></vl-checkbox>
             </vl-demo>
     
             <vl-demo data-vl-title="Checkbox switch">
-                <vl-checkbox id="checkbox-switch" switch></vl-checkbox>
+                <vl-checkbox id="checkbox-switch" data-vl-switch></vl-checkbox>
             </vl-demo>
     
             <vl-demo data-vl-title="Checkboxes multiple">
-                <vl-checkbox id="checkbox-multi-1" label="Optie 1" value="1" checked="[]"></vl-checkbox>
-                <vl-checkbox id="checkbox-multi-2" label="Optie 2" value="2" checked="[]"></vl-checkbox>
-                <vl-checkbox id="checkbox-multi-3" label="Optie 3" value="3" checked="[]"></vl-checkbox>
+                <vl-checkbox id="checkbox-multi-1" data-vl-label="Optie 1" data-vl-value="1" data-vl-checked="[]"></vl-checkbox>
+                <vl-checkbox id="checkbox-multi-2" data-vl-label="Optie 2" data-vl-value="2" data-vl-checked="[]"></vl-checkbox>
+                <vl-checkbox id="checkbox-multi-3" data-vl-label="Optie 3" data-vl-value="3" data-vl-checked="[]"></vl-checkbox>
             </vl-demo>
     
             <vl-demo data-vl-title="Checkboxes multiple standaard checked">
-                <vl-checkbox id="checkbox-multi-st-1" label="Optie 1" value="1" checked="[2,3]"></vl-checkbox>
-                <vl-checkbox id="checkbox-multi-st-2" label="Optie 2" value="2" checked="[2,3]"></vl-checkbox>
-                <vl-checkbox id="checkbox-multi-st-3" label="Optie 3" value="3" checked="[2,3]"></vl-checkbox>
+                <vl-checkbox id="checkbox-multi-st-1" data-vl-label="Optie 1" data-vl-value="1" data-vl-checked="[2,3]"></vl-checkbox>
+                <vl-checkbox id="checkbox-multi-st-2" data-vl-label="Optie 2" data-vl-value="2" data-vl-checked="[2,3]"></vl-checkbox>
+                <vl-checkbox id="checkbox-multi-st-3" data-vl-label="Optie 3" data-vl-value="3" data-vl-checked="[2,3]"></vl-checkbox>
             </vl-demo>
     
             <vl-demo data-vl-title="Checkboxe met slot element">
-                <vl-checkbox id="checkbox-slot-1" value="1">
+                <vl-checkbox id="checkbox-slot-1" data-vl-value="1">
                     <span>Optie <strong>1</strong></span>
                 </vl-checkbox>
             </vl-demo>
