@@ -38,7 +38,9 @@ export class VlCheckbox extends vlElement(HTMLElement) {
         <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
         <div class="vl-checkbox__label">
           <i class="vl-checkbox__box" aria-hidden="true"></i>
-          <slot></slot>
+          <span>
+            <slot></slot>
+          </span>
         </div>
       </label>
     `);
@@ -49,6 +51,37 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     this._inputElement.oninput = (event) => event.stopPropagation();
   }
 
+  /**
+   * Geeft de waarde van het checkbox input element.
+   *
+   * @return {boolean}
+   */
+  get checked() {
+    return this._inputElement.checked;
+  }
+
+  /**
+   * Zet de waarde van het checkbox input element.
+   *
+   * @param {boolean} value
+   */
+  set checked(value) {
+    this._inputElement.checked = value;
+  }
+
+  /**
+   * Triggert een toggle van de checkbox zonder te klikken op de checkbox.
+   *
+   * @return {void}
+   */
+  toggle() {
+    this._inputElement.click();
+  }
+
+  get _isSingle() {
+    return this.hasAttribute('single');
+  }
+
   get _classPrefix() {
     return 'vl-checkbox--';
   }
@@ -57,30 +90,12 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     return this._element.querySelector('input');
   }
 
-  get _checkboxLabelElement() {
-    return this._element.querySelector('.vl-checkbox__label');
+  get _labelElement() {
+    return this._element.querySelector('.vl-checkbox__label span');
   }
 
-  get _checkboxLabelSlotElement() {
+  get _labelSlotElement() {
     return this._element.querySelector('slot');
-  }
-
-  /**
-   * Triggert een toggle van de checkbox zonder te klikken op de checkbox.
-   *
-   * @Return {void}
-   */
-  toggle() {
-    this._inputElement.click();
-  }
-
-  /**
-   * Geeft de waarde van de checkbox terug.
-   *
-   * @Return {boolean}
-   */
-  get checked() {
-    return this._inputElement.checked;
   }
 
   _toggle() {
@@ -102,13 +117,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   _labelChangedCallback(oldValue, newValue) {
-    if (newValue) {
-      this._label = newValue;
-      this._checkboxLabelElement.append(this._label);
-      this._checkboxLabelSlotElement.remove();
-    } else {
-      this._checkboxLabelElement.insertAdjacentHTML('afterbegin', `<slot></slot>`);
-    }
+    this._labelSlotElement.textContent = newValue;
   }
 
   _valueChangedCallback(oldValue, newValue) {
@@ -133,12 +142,8 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     this._inputElement.disabled = newValue != undefined;
   }
 
-  _singleChangedCallback() {
-    [...this._checkboxLabelElement.childNodes].filter(this._isTextNode).forEach(this._removeNode);
-    const span = document.createElement('span');
-    span.classList.add('vl-u-visually-hidden');
-    span.textContent = this._label;
-    this._checkboxLabelElement.appendChild(span);
+  _singleChangedCallback(oldValue, newValue) {
+    this._toggleClass(this._labelElement, newValue, 'vl-u-visually-hidden');
   }
 
   _isTextNode(node) {
