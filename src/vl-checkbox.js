@@ -6,12 +6,13 @@ import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
  * @classdesc De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit een lijst. Gebruik de checkbox in formulieren.
  *
  * @extends HTMLElement
+ * @mixesvlElement
  *
- * @property {boolean} block - Attribuut wordt gebruikt om ervoor te zorgen dat de checkbox getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.
- * @property {boolean} error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
- * @property {boolean} disabled - Attribuut wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren.
- * @property {boolean} single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
- * @property {boolean} switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
+ * @property {boolean} data-vl-block - Attribuut wordt gebruikt om ervoor te zorgen dat de checkbox getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.
+ * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
+ * @property {boolean} data-vl-disabled - Attribuut wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren.
+ * @property {boolean} data-vl-single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
+ * @property {boolean} data-vl-switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/issues|Issues}
@@ -28,23 +29,56 @@ export class VlCheckbox extends vlElement(HTMLElement) {
 
   constructor() {
     super(`
-            <style>
-                @import '/src/style.css';
-            </style>
+      <style>
+        @import '/src/style.css';
+      </style>
 
-            <label id="label" class="vl-checkbox" for="checkbox">
-                <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
-                <div class="vl-checkbox__label">
-                    <i class="vl-checkbox__box" aria-hidden="true"></i>
-                    <slot></slot>
-                </div>
-            </label>
-        `);
+      <label id="label" class="vl-checkbox" for="checkbox">
+        <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
+        <div class="vl-checkbox__label">
+          <i class="vl-checkbox__box" aria-hidden="true"></i>
+          <span>
+            <slot></slot>
+          </span>
+        </div>
+      </label>
+    `);
   }
 
   connectedCallback() {
     this._inputElement.onchange = this._toggle;
     this._inputElement.oninput = (event) => event.stopPropagation();
+  }
+
+  /**
+   * Geeft de waarde van het checkbox input element.
+   *
+   * @return {boolean}
+   */
+  get checked() {
+    return this._inputElement.checked;
+  }
+
+  /**
+   * Zet de waarde van het checkbox input element.
+   *
+   * @param {boolean} value
+   */
+  set checked(value) {
+    this._inputElement.checked = value;
+  }
+
+  /**
+   * Triggert een toggle van de checkbox zonder te klikken op de checkbox.
+   *
+   * @return {void}
+   */
+  toggle() {
+    this._inputElement.click();
+  }
+
+  get _isSingle() {
+    return this.hasAttribute('single');
   }
 
   get _classPrefix() {
@@ -55,30 +89,12 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     return this._element.querySelector('input');
   }
 
-  get _checkboxLabelElement() {
-    return this._element.querySelector('.vl-checkbox__label');
+  get _labelElement() {
+    return this._element.querySelector('.vl-checkbox__label span');
   }
 
-  get _checkboxLabelSlotElement() {
+  get _labelSlotElement() {
     return this._element.querySelector('slot');
-  }
-
-  /**
-   * Triggert een toggle van de checkbox zonder te klikken op de checkbox.
-   *
-   * @Return {void}
-   */
-  toggle() {
-    this._inputElement.click();
-  }
-
-  /**
-   * Geeft de waarde van de checkbox terug.
-   *
-   * @Return {boolean}
-   */
-  get checked() {
-    return this._inputElement.checked;
   }
 
   _toggle() {
@@ -92,7 +108,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
         parent._checked.push(value);
       }
       checked = parent._checked;
-      parent.setAttribute('checked', JSON.stringify(checked));
+      parent.setAttribute('data-vl-checked', JSON.stringify(checked));
     } else {
       checked = this.checked;
     }
@@ -100,13 +116,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   _labelChangedCallback(oldValue, newValue) {
-    if (newValue) {
-      this._label = newValue;
-      this._checkboxLabelElement.append(this._label);
-      this._checkboxLabelSlotElement.remove();
-    } else {
-      this._checkboxLabelElement.insertAdjacentHTML('afterbegin', `<slot></slot>`);
-    }
+    this._labelSlotElement.textContent = newValue;
   }
 
   _valueChangedCallback(oldValue, newValue) {
@@ -131,12 +141,8 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     this._inputElement.disabled = newValue != undefined;
   }
 
-  _singleChangedCallback() {
-    [...this._checkboxLabelElement.childNodes].filter(this._isTextNode).forEach(this._removeNode);
-    const span = document.createElement('span');
-    span.classList.add('vl-u-visually-hidden');
-    span.textContent = this._label;
-    this._checkboxLabelElement.appendChild(span);
+  _singleChangedCallback(oldValue, newValue) {
+    this._toggleClass(this._labelElement, newValue, 'vl-u-visually-hidden');
   }
 
   _isTextNode(node) {
