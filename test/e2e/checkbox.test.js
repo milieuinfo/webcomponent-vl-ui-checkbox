@@ -92,7 +92,7 @@ describe('vl-checkbox', async () => {
 
   it('als gebruiker zie ik een label bij een checkbox die gebruik maakt van een slot element', async () => {
     const checkbox = await vlCheckboxPage.getCheckboxSlot();
-    const labelSlotElements = await checkbox._getLabelSlotElements();
+    const labelSlotElements = await checkbox.getLabelSlotElements();
     await assert.eventually.equal(labelSlotElements[0].getText(), 'Optie 1');
   });
 

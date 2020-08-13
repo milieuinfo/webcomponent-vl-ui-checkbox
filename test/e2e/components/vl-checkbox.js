@@ -7,7 +7,7 @@ class VlCheckbox extends VlElement {
     return label.getText();
   }
 
-  async _getLabelSlotElements() {
+  async getLabelSlotElements() {
     const slot = await this.shadowRoot.findElement(By.css('slot'));
     return this.getAssignedElements(slot);
   }
@@ -38,7 +38,7 @@ class VlCheckbox extends VlElement {
   }
 
   async _getLabel() {
-    return this.shadowRoot.findElement(By.css('.vl-checkbox__label'));
+    return this.shadowRoot.findElement(By.css('.vl-checkbox__label slot'));
   }
 
   async _getInput() {
