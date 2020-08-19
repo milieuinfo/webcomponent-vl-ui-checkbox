@@ -19,6 +19,10 @@ import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-checkbox.html|Demo}
  */
 export class VlCheckbox extends vlElement(HTMLElement) {
+  static get formAssociated() {
+    return true;
+  }
+
   static get _observedAttributes() {
     return ['label', 'value', 'checked'];
   }
@@ -43,11 +47,52 @@ export class VlCheckbox extends vlElement(HTMLElement) {
         </div>
       </label>
     `);
+    this._internals = this.attachInternals();
   }
 
   connectedCallback() {
     this._inputElement.onchange = this._toggle;
     this._inputElement.oninput = (event) => event.stopPropagation();
+  }
+
+  formResetCallback() {
+    this.checked = this.hasAttribute('checked');
+  }
+
+  /**
+   * Returns a reference to the parent <form> element.
+   *
+   * @return {HTMLFormElement}
+   */
+  get form() {
+    return this._internals.form;
+  }
+
+  /**
+   * Returns the element's current validity state.
+   *
+   * @return {ValidityState}
+   */
+  get validity() {
+    return this._internals.validity;
+  }
+
+  /**
+   * Returns a localized message that describes the validation constraints that the control does not satisfy (if any). This is the empty string if the control is not a candidate for constraint validation (willvalidate is false), or it satisfies its constraints. This value can be set by the setCustomValidity method.
+   *
+   * @return {string}
+   */
+  get validationMessage() {
+    return this._internals.validationMessage;
+  }
+
+  /**
+   * Returns whether the element is a candidate for constraint validation.
+   *
+   * @return {boolean}
+   */
+  get willValidate() {
+    return this._internals.willValidate;
   }
 
   /**
