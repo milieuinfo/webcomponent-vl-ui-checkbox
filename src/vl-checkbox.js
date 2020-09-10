@@ -57,6 +57,9 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     this._inputElement.oninput = (event) => event.stopPropagation();
   }
 
+  /**
+   * Callback called when the form is reset.
+   */
   formResetCallback() {
     this.checked = this.hasAttribute('checked');
   }
