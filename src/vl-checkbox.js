@@ -11,8 +11,10 @@ import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
  * @property {boolean} data-vl-block - Attribuut wordt gebruikt om ervoor te zorgen dat de checkbox getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.
  * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
  * @property {boolean} data-vl-disabled - Attribuut wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren.
+ * @property {boolean} data-vl-name - Attribuut wordt gebruikt om checkbox te identificeren.
  * @property {boolean} data-vl-single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
  * @property {boolean} data-vl-switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
+ * @property {boolean} data-vl-value - Attribuut wordt gebruikt om de checkbox waarde te bepalen.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/issues|Issues}
@@ -24,7 +26,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   static get _observedAttributes() {
-    return ['label', 'value', 'checked'];
+    return ['label', 'name', 'value', 'checked'];
   }
 
   static get _observedChildClassAttributes() {
@@ -162,6 +164,13 @@ export class VlCheckbox extends vlElement(HTMLElement) {
 
   _labelChangedCallback(oldValue, newValue) {
     this._labelSlotElement.textContent = newValue;
+  }
+
+  _nameChangedCallback(oldValue, newValue) {
+    if (this._inputElement.name != newValue) {
+      this._inputElement.name = newValue;
+      this.setAttribute('name', newValue);
+    }
   }
 
   _valueChangedCallback(oldValue, newValue) {
