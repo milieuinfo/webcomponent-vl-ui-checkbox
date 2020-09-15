@@ -49,6 +49,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   connectedCallback() {
     this._inputElement.onchange = this._toggle;
     this._inputElement.oninput = (event) => event.stopPropagation();
+    this._registerChangeEvent();
   }
 
   /**
@@ -152,6 +153,10 @@ export class VlCheckbox extends vlElement(HTMLElement) {
 
   _removeNode(node) {
     node.remove();
+  }
+
+  _registerChangeEvent() {
+    this._inputElement.addEventListener('change', () => this.dispatchEvent(new Event('change')));
   }
 }
 
