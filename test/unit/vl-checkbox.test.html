@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <script src="../../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
   <script src="../../../web-component-tester/browser.js"></script>
+  <script src="../../node_modules/sinon/pkg/sinon.js"></script>
 
   <script type="module" src="../../src/vl-checkbox.js"></script>
 
@@ -43,14 +44,23 @@
     </template>
   </test-fixture>
 
-  <script>
+  <script type="module">
+    import {VlCheckbox} from '../../src/vl-checkbox';
+    import {vlFormValidation} from 'vl-ui-form-validation/dist/vl-form-validation';
+
     suite('vl-checkbox', () => {
       const should = chai.should();
+
+      const sandbox = sinon.createSandbox();
+
+      teardown(() => {
+        sandbox.restore();
+      });
 
       test('krijgt de juiste class wanneer de knop een attribuut bevat', () => {
         const checkbox = fixture('vl-checkbox-fixture');
         const checkboxLabel = checkbox.shadowRoot.querySelector('.vl-checkbox');
-        ['block', 'single', 'disabled', 'error', 'switch'].forEach((attribuut) => {
+        ['block', 'single', 'disabled', 'error', 'success', 'switch'].forEach((attribuut) => {
           assert.isFalse(checkboxLabel.classList.contains('vl-checkbox--' + attribuut));
           checkbox.setAttribute(`data-vl-${attribuut}`, '');
           assert.isTrue(checkboxLabel.classList.contains('vl-checkbox--' + attribuut));
@@ -257,23 +267,17 @@
         checkbox._inputElement.click();
       });
 
-      test('kan het checkbox name attribuut van het onderliggend input element bepalen en opvragen', () => {
-        const checkbox = fixture('vl-checkbox-fixture');
-        assert.isNull(checkbox.name);
-        let name = 'name 1';
-        checkbox.setAttribute('data-vl-name', name);
-        assert.equal(checkbox.name, name);
-        assert.equal(checkbox._inputElement.name, name);
-        name = 'name 2';
-        checkbox.name = name;
-        assert.equal(checkbox.name, name);
-        assert.equal(checkbox._inputElement.name, name);
+      test('bevat de form validation observed attributes om correcte formulier validatie te realiseren', () => {
+        vlFormValidation._observedAttributes().forEach((attribute) => assert.include(VlCheckbox._observedAttributes, attribute));
       });
 
-      test('kan het formulier element opvragen', () => {
-        const form = fixture('vl-checkbox-form-fixture');
-        const checkbox = form.querySelector('vl-checkbox');
-        assert.equal(checkbox.form, form);
+      test('de checkbox zal pas wanneer dress uitgevoerd werd de validation dress functie uitvoeren als het onderdeel van een formulier is', () => {
+        debugger;
+        sandbox.spy(vl.formValidation, 'dress');
+        let checkbox = fixture('vl-checkbox-fixture');
+        assert(vl.formValidation.dress.notCalled);
+        checkbox = fixture('vl-checkbox-form-fixture').querySelector('vl-checkbox');
+        assert(vl.formValidation.dress.calledWith(checkbox.form));
       });
     });
   </script>
