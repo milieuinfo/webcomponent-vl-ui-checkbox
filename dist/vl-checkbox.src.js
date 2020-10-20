@@ -23,7 +23,7 @@ import {vlFormValidation, vlFormValidationElement} from 'vl-ui-form-validation';
  */
 export class VlCheckbox extends vlFormValidationElement(vlElement(HTMLElement)) {
   static get _observedAttributes() {
-    return vlFormValidation._observedAttributes().concat(['label', 'value', 'checked', 'name']);
+    return vlFormValidation._observedAttributes().concat(['label', 'value', 'checked']);
   }
 
   static get _observedChildClassAttributes() {
