@@ -1,4 +1,5 @@
 import {vlElement, define} from 'vl-ui-core';
+import {vlFormValidation, vlFormValidationElement} from 'vl-ui-form-validation';
 
 /**
  * VlCheckbox
@@ -13,19 +14,20 @@ import {vlElement, define} from 'vl-ui-core';
  * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
  * @property {string} data-vl-name - Attribuut om aan de naam te definiëren.
  * @property {boolean} data-vl-single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
+ * @property {boolean} data-vl-success - Attribuut wordt gebruikt om aan te duiden dat de checkbox correct werd ingevuld.
  * @property {boolean} data-vl-switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-checkbox.html|Demo}
  */
-export class VlCheckbox extends vlElement(HTMLElement) {
+export class VlCheckbox extends vlFormValidationElement(vlElement(HTMLElement)) {
   static get _observedAttributes() {
-    return ['label', 'value', 'checked', 'name'];
+    return vlFormValidation._observedAttributes().concat(['label', 'value', 'checked', 'name']);
   }
 
   static get _observedChildClassAttributes() {
-    return ['block', 'single', 'disabled', 'error', 'switch'];
+    return ['block', 'single', 'disabled', 'error', 'success', 'switch'];
   }
 
   constructor() {
@@ -51,6 +53,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     this._inputElement.onchange = this._toggle;
     this._inputElement.oninput = (event) => event.stopPropagation();
     this._registerChangeEvent();
+    this._dressFormValidation();
   }
 
   /**
@@ -60,33 +63,6 @@ export class VlCheckbox extends vlElement(HTMLElement) {
    */
   get checked() {
     return this._inputElement.checked;
-  }
-
-  /**
-   * Geeft de waarde van het naam attribuut terug.
-   *
-   * @return {string}
-   */
-  get name() {
-    return this.getAttribute('name');
-  }
-
-  /**
-   * Bepaal het name attribuut van de checkbox en achterliggend input element.
-   *
-   * @param {string} value
-   */
-  set name(value) {
-    this.setAttribute('data-vl-name', value);
-  }
-
-  /**
-   * Geeft het form element terug.
-   *
-   * @return {HTMLFormElement}
-   */
-  get form() {
-    return this.closest('form');
   }
 
   /**
@@ -169,13 +145,6 @@ export class VlCheckbox extends vlElement(HTMLElement) {
 
   _disabledChangedCallback(oldValue, newValue) {
     this._inputElement.disabled = newValue != undefined;
-  }
-
-  _nameChangedCallback(oldValue, newValue) {
-    if (this._inputElement.name != newValue) {
-      this._inputElement.name = newValue;
-      this.setAttribute('name', newValue);
-    }
   }
 
   _singleChangedCallback(oldValue, newValue) {
