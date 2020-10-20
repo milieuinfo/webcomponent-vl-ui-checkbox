@@ -35,6 +35,14 @@
     </template>
   </test-fixture>
 
+  <test-fixture id="vl-checkbox-form-fixture">
+    <template>
+      <form>
+        <vl-checkbox data-vl-label="optie 1"></vl-checkbox>
+      </form>
+    </template>
+  </test-fixture>
+
   <script>
     suite('vl-checkbox', () => {
       const should = chai.should();
@@ -247,6 +255,25 @@
         const checkbox = fixture('vl-checkbox-fixture');
         checkbox.addEventListener('change', () => done());
         checkbox._inputElement.click();
+      });
+
+      test('kan het checkbox name attribuut van het onderliggend input element bepalen en opvragen', () => {
+        const checkbox = fixture('vl-checkbox-fixture');
+        assert.isNull(checkbox.name);
+        let name = 'name 1';
+        checkbox.setAttribute('data-vl-name', name);
+        assert.equal(checkbox.name, name);
+        assert.equal(checkbox._inputElement.name, name);
+        name = 'name 2';
+        checkbox.name = name;
+        assert.equal(checkbox.name, name);
+        assert.equal(checkbox._inputElement.name, name);
+      });
+
+      test('kan het formulier element opvragen', () => {
+        const form = fixture('vl-checkbox-form-fixture');
+        const checkbox = form.querySelector('vl-checkbox');
+        assert.equal(checkbox.form, form);
       });
     });
   </script>

@@ -9,8 +9,9 @@ import {vlElement, define} from 'vl-ui-core';
  * @mixesvlElement
  *
  * @property {boolean} data-vl-block - Attribuut wordt gebruikt om ervoor te zorgen dat de checkbox getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.
- * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
  * @property {boolean} data-vl-disabled - Attribuut wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren.
+ * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
+ * @property {string} data-vl-name - Attribuut om aan de naam te definiëren.
  * @property {boolean} data-vl-single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
  * @property {boolean} data-vl-switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
  *
@@ -20,7 +21,7 @@ import {vlElement, define} from 'vl-ui-core';
  */
 export class VlCheckbox extends vlElement(HTMLElement) {
   static get _observedAttributes() {
-    return ['label', 'value', 'checked'];
+    return ['label', 'value', 'checked', 'name'];
   }
 
   static get _observedChildClassAttributes() {
@@ -59,6 +60,33 @@ export class VlCheckbox extends vlElement(HTMLElement) {
    */
   get checked() {
     return this._inputElement.checked;
+  }
+
+  /**
+   * Geeft de waarde van het naam attribuut terug.
+   *
+   * @return {string}
+   */
+  get name() {
+    return this.getAttribute('name');
+  }
+
+  /**
+   * Bepaal het name attribuut van de checkbox en achterliggend input element.
+   *
+   * @param {string} value
+   */
+  set name(value) {
+    this.setAttribute('data-vl-name', value);
+  }
+
+  /**
+   * Geeft het form element terug.
+   *
+   * @return {HTMLFormElement}
+   */
+  get form() {
+    return this.closest('form');
   }
 
   /**
@@ -141,6 +169,13 @@ export class VlCheckbox extends vlElement(HTMLElement) {
 
   _disabledChangedCallback(oldValue, newValue) {
     this._inputElement.disabled = newValue != undefined;
+  }
+
+  _nameChangedCallback(oldValue, newValue) {
+    if (this._inputElement.name != newValue) {
+      this._inputElement.name = newValue;
+      this.setAttribute('name', newValue);
+    }
   }
 
   _singleChangedCallback(oldValue, newValue) {
