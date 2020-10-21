@@ -267,6 +267,12 @@
         checkbox._inputElement.click();
       });
 
+      test('kan programmatisch focus activeren', (done) => {
+        const element = fixture('vl-checkbox-fixture');
+        element._inputElement.addEventListener('focus', () => done());
+        element.focus();
+      });
+
       test('de form validation element constructor wordt aangeroepen', () => {
         new VlCheckbox().connectedCallback.toString().includes('super.connectedCallback();');
       });

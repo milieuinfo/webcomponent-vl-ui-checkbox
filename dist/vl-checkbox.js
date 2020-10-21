@@ -87,6 +87,13 @@ export class VlCheckbox extends vlFormValidationElement(vlElement(HTMLElement)) 
     this._inputElement.click();
   }
 
+  /**
+   * Geeft focus aan het datepicker input element.
+   */
+  focus() {
+    this._inputElement.focus();
+  }
+
   get _isSingle() {
     return this.hasAttribute('single');
   }
