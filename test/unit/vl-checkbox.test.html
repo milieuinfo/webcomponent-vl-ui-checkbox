@@ -277,9 +277,9 @@
 
       test('de checkbox zal pas wanneer dress uitgevoerd werd de validation dress functie uitvoeren als het onderdeel van een formulier is', () => {
         sandbox.spy(vl.formValidation, 'dress');
-        let checkbox = fixture('vl-checkbox-fixture');
+        fixture('vl-checkbox-fixture');
         assert(vl.formValidation.dress.notCalled);
-        checkbox = fixture('vl-checkbox-form-fixture').querySelector('vl-checkbox');
+        const checkbox = fixture('vl-checkbox-form-fixture').querySelector('vl-checkbox');
         assert(vl.formValidation.dress.calledWith(checkbox.form));
       });
     });
