@@ -49,6 +49,7 @@ export class VlCheckbox extends vlFormValidationElement(vlElement(HTMLElement)) 
   }
 
   connectedCallback() {
+    super.connectedCallback();
     this._inputElement.onchange = this._toggle;
     this._inputElement.oninput = (event) => event.stopPropagation();
     this._registerChangeEvent();

@@ -267,12 +267,15 @@
         checkbox._inputElement.click();
       });
 
+      test('de form validation element constructor wordt aangeroepen', () => {
+        new VlCheckbox().connectedCallback.toString().includes('super.connectedCallback();');
+      });
+
       test('bevat de form validation observed attributes om correcte formulier validatie te realiseren', () => {
         vlFormValidation._observedAttributes().forEach((attribute) => assert.include(VlCheckbox._observedAttributes, attribute));
       });
 
       test('de checkbox zal pas wanneer dress uitgevoerd werd de validation dress functie uitvoeren als het onderdeel van een formulier is', () => {
-        debugger;
         sandbox.spy(vl.formValidation, 'dress');
         let checkbox = fixture('vl-checkbox-fixture');
         assert(vl.formValidation.dress.notCalled);
