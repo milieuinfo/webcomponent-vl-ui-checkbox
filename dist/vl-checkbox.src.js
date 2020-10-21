@@ -1,6 +1,10 @@
 import {vlElement, define} from 'vl-ui-core';
 import {vlFormValidation, vlFormValidationElement} from 'vl-ui-form-validation';
 
+Promise.all([
+  vlFormValidation.ready(),
+]).then(() => define('vl-checkbox', VlCheckbox));
+
 /**
  * VlCheckbox
  * @class
@@ -164,6 +168,4 @@ export class VlCheckbox extends vlFormValidationElement(vlElement(HTMLElement)) 
     this._inputElement.addEventListener('change', () => this.dispatchEvent(new Event('change')));
   }
 }
-
-define('vl-checkbox', VlCheckbox);
 
