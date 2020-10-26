@@ -277,7 +277,7 @@
         vlFormValidation._observedAttributes().forEach((attribute) => assert.include(VlCheckbox._observedAttributes, attribute));
       });
 
-      test('de checkbox zal pas wanneer dress uitgevoerd werd de validation dress functie uitvoeren als het onderdeel van een formulier is', () => {
+      test('de checkbox zal pas de validation dress functie uitvoeren als het onderdeel van een formulier is', () => {
         sandbox.spy(vl.formValidation, 'dress');
         fixture('vl-checkbox-fixture');
         assert(vl.formValidation.dress.notCalled);
