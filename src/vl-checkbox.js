@@ -1,4 +1,9 @@
 import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
+import {vlFormValidation, vlFormValidationElement} from '/node_modules/vl-ui-form-validation/dist/vl-form-validation-all.js';
+
+Promise.all([
+  vlFormValidation.ready(),
+]).then(() => define('vl-checkbox', VlCheckbox));
 
 /**
  * VlCheckbox
@@ -9,22 +14,24 @@ import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
  * @mixesvlElement
  *
  * @property {boolean} data-vl-block - Attribuut wordt gebruikt om ervoor te zorgen dat de checkbox getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.
- * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
  * @property {boolean} data-vl-disabled - Attribuut wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren.
+ * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
+ * @property {string} data-vl-name - Attribuut om aan de naam te definiëren.
  * @property {boolean} data-vl-single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
+ * @property {boolean} data-vl-success - Attribuut wordt gebruikt om aan te duiden dat de checkbox correct werd ingevuld.
  * @property {boolean} data-vl-switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-checkbox.html|Demo}
  */
-export class VlCheckbox extends vlElement(HTMLElement) {
+export class VlCheckbox extends vlFormValidationElement(vlElement(HTMLElement)) {
   static get _observedAttributes() {
-    return ['label', 'value', 'checked'];
+    return vlFormValidation._observedAttributes().concat(['label', 'value', 'checked']);
   }
 
   static get _observedChildClassAttributes() {
-    return ['block', 'single', 'disabled', 'error', 'switch'];
+    return ['block', 'single', 'disabled', 'error', 'success', 'switch'];
   }
 
   constructor() {
@@ -49,6 +56,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     this._inputElement.onchange = this._toggle;
     this._inputElement.oninput = (event) => event.stopPropagation();
     this._registerChangeEvent();
+    this._dressFormValidation();
   }
 
   /**
@@ -76,6 +84,13 @@ export class VlCheckbox extends vlElement(HTMLElement) {
    */
   toggle() {
     this._inputElement.click();
+  }
+
+  /**
+   * Geeft focus aan het datepicker input element.
+   */
+  focus() {
+    this._inputElement.focus();
   }
 
   get _isSingle() {
@@ -158,5 +173,3 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     this._inputElement.addEventListener('change', () => this.dispatchEvent(new Event('change')));
   }
 }
-
-define('vl-checkbox', VlCheckbox);
