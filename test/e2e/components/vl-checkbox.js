@@ -2,8 +2,14 @@ const {VlElement} = require('vl-ui-core').Test;
 const {By} = require('vl-ui-core').Test.Setup;
 
 class VlCheckbox extends VlElement {
-  async getLabel() {
+  async click() {
+    await this.hover();
     const label = await this._getLabel();
+    await this.driver.actions().move({origin: label}).click().perform();
+  }
+
+  async getLabel() {
+    const label = await this._getLabelSlot();
     return label.getText();
   }
 
@@ -38,7 +44,12 @@ class VlCheckbox extends VlElement {
   }
 
   async _getLabel() {
-    return this.shadowRoot.findElement(By.css('.vl-checkbox__label slot'));
+    return this.shadowRoot.findElement(By.css('.vl-checkbox__label'));
+  }
+
+  async _getLabelSlot() {
+    const label = await this._getLabel();
+    return label.findElement(By.css('slot'));
   }
 
   async _getInput() {
