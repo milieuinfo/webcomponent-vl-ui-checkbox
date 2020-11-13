@@ -2,6 +2,11 @@ const {VlElement} = require('vl-ui-core').Test;
 const {By} = require('vl-ui-core').Test.Setup;
 
 class VlCheckbox extends VlElement {
+  async click() {
+    const input = await this._getInput();
+    await this.driver.actions().move({origin: input}).click().perform();
+  }
+
   async getLabel() {
     const label = await this._getLabel();
     return label.getText();
