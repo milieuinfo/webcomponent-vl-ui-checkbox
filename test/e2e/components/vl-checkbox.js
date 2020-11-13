@@ -3,6 +3,7 @@ const {By} = require('vl-ui-core').Test.Setup;
 
 class VlCheckbox extends VlElement {
   async click() {
+    await this.hover();
     const input = await this._getInput();
     await this.driver.actions().move({origin: input}).click().perform();
   }
