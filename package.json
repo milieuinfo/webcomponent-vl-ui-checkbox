@@ -1,6 +1,6 @@
 {
   "name": "vl-ui-checkbox",
-  "version": "3.2.0",
+  "version": "3.2.2",
   "description": "De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit een lijst. Gebruik de checkbox in formulieren.",
   "author": "DIDM",
   "license": "MIT",
@@ -49,6 +49,7 @@
     "@govflanders/vl-ui-form-structure": "^3.11.5",
     "@govflanders/vl-ui-util": "^3.11.5",
     "vl-ui-body": "^1.0.4",
-    "vl-ui-util": "github:milieuinfo/webcomponent-vl-ui-util"
+    "vl-ui-util": "^5.2.19",
+    "chromedriver": "^87.0.0"
   }
 }
