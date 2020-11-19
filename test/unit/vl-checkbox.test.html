@@ -45,6 +45,15 @@
     </template>
   </test-fixture>
 
+  <test-fixture id="vl-checkboxes-form-identical-names-fixture">
+    <template>
+      <form>
+        <vl-checkbox data-vl-label="optie 1" name="options"></vl-checkbox>
+        <vl-checkbox data-vl-label="optie 2" name="options"></vl-checkbox>
+      </form>
+    </template>
+  </test-fixture>
+
   <script>
     suite('vl-checkbox', () => {
       const should = chai.should();
@@ -297,6 +306,12 @@
         const checkboxes = form.querySelectorAll('vl-checkbox');
         assert.equal(form['option-1'], checkboxes[0]);
         assert.equal(form['option-2'], checkboxes[1]);
+      });
+
+      test('de checkboxen kunnen via de form selector opgevraagd worden als ze hetzelfde name attribuut delen', () => {
+        const form = fixture('vl-checkboxes-form-identical-names-fixture');
+        const checkboxes = form.querySelectorAll('vl-checkbox');
+        assert.lengthOf(form['options'], checkboxes.length);
       });
     });
   </script>
