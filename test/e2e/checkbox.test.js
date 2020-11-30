@@ -1,11 +1,12 @@
 
-const {assert, driver} = require('vl-ui-core').Test.Setup;
+const {assert, getDriver} = require('vl-ui-core').Test.Setup;
 const VlCheckboxPage = require('./pages/vl-checkbox.page');
 
 describe('vl-checkbox', async () => {
-  const vlCheckboxPage = new VlCheckboxPage(driver);
+  let vlCheckboxPage;
 
   before(() => {
+    vlCheckboxPage = new VlCheckboxPage(getDriver());
     return vlCheckboxPage.load();
   });
 
