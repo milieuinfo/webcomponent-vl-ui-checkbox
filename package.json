@@ -37,10 +37,10 @@
     "demo": "http-server"
   },
   "dependencies": {
-    "vl-ui-core": "^6.2.2"
+    "vl-ui-core": "milieuinfo/webcomponent-vl-ui-core#selenium-version"
   },
   "peerDependencies": {
-    "vl-ui-core": "^6.0.0"
+    "vl-ui-core": "milieuinfo/webcomponent-vl-ui-core#selenium-version"
   },
   "devDependencies": {
     "@govflanders/vl-ui-checkbox": "^3.11.5",
