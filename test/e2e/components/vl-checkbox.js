@@ -36,7 +36,7 @@ class VlCheckbox extends VlElement {
   }
 
   async isSwitch() {
-    return this._hasClass('vl-checkbox--switch');
+    return this._hasClass('vl-checkbox--switch__wrapper');
   }
 
   async isDisabled() {

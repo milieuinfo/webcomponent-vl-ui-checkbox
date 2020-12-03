@@ -42,7 +42,7 @@
       test('krijgt de juiste class wanneer de knop een attribuut bevat', () => {
         const checkbox = fixture('vl-checkbox-fixture');
         const checkboxLabel = checkbox.shadowRoot.querySelector('.vl-checkbox');
-        ['block', 'single', 'disabled', 'error', 'switch'].forEach((attribuut) => {
+        ['block', 'single', 'disabled', 'error'].forEach((attribuut) => {
           assert.isFalse(checkboxLabel.classList.contains('vl-checkbox--' + attribuut));
           checkbox.setAttribute(`data-vl-${attribuut}`, '');
           assert.isTrue(checkboxLabel.classList.contains('vl-checkbox--' + attribuut));
