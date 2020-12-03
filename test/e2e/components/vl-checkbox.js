@@ -44,7 +44,12 @@ class VlCheckbox extends VlElement {
   }
 
   async _getLabel() {
-    return this.shadowRoot.findElement(By.css('.vl-checkbox__label'));
+    const isSwitch = await this.isSwitch();
+    if (isSwitch) {
+      return this.shadowRoot.findElement(By.css('.vl-checkbox--switch__label'));
+    } else {
+      return this.shadowRoot.findElement(By.css('.vl-checkbox__label'));
+    }
   }
 
   async _getLabelSlot() {
