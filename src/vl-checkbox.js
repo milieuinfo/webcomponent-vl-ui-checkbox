@@ -49,7 +49,11 @@ export class VlCheckbox extends vlElement(HTMLElement) {
         </div>
       </label>
     `);
-    this._internals = this.attachInternals();
+    if (this.attachInternals) {
+      this._internals = this.attachInternals();
+    } else {
+      this._internals = null;
+    }
   }
 
   connectedCallback() {
@@ -70,7 +74,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
    * @return {HTMLFormElement}
    */
   get form() {
-    return this._internals.form;
+    return this._internals?.form;
   }
 
   /**
@@ -79,7 +83,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
    * @return {ValidityState}
    */
   get validity() {
-    return this._internals.validity;
+    return this._internals?.validity;
   }
 
   /**
@@ -88,7 +92,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
    * @return {string}
    */
   get validationMessage() {
-    return this._internals.validationMessage;
+    return this._internals?.validationMessage;
   }
 
   /**
@@ -97,7 +101,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
    * @return {boolean}
    */
   get willValidate() {
-    return this._internals.willValidate;
+    return this._internals?.willValidate;
   }
 
   /**

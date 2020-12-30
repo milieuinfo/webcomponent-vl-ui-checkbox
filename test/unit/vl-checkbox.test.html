@@ -58,6 +58,11 @@
     suite('vl-checkbox', () => {
       const should = chai.should();
 
+      const hasElementInternalsSupport = () => {
+        const checkbox = fixture('vl-checkbox-fixture');
+        return checkbox._internals != undefined;
+      };
+
       test('krijgt de juiste class wanneer de knop een attribuut bevat', () => {
         const checkbox = fixture('vl-checkbox-fixture');
         const checkboxLabel = checkbox.shadowRoot.querySelector('.vl-checkbox');
@@ -280,38 +285,46 @@
       });
 
       test('bij een reset van het formulier zullen de checkbox waarden hersteld worden', () => {
-        const form = fixture('vl-checkboxes-form-fixture');
-        const checkboxes = form.querySelectorAll('vl-checkbox');
-        assert.isTrue(checkboxes[0].checked);
-        assert.isFalse(checkboxes[1].checked);
-        checkboxes[0].checked = false;
-        checkboxes[1].checked = true;
-        assert.isFalse(checkboxes[0].checked);
-        assert.isTrue(checkboxes[1].checked);
-        form.reset();
-        assert.isTrue(checkboxes[0].checked);
-        assert.isFalse(checkboxes[1].checked);
+        if (hasElementInternalsSupport()) {
+          const form = fixture('vl-checkboxes-form-fixture');
+          const checkboxes = form.querySelectorAll('vl-checkbox');
+          assert.isTrue(checkboxes[0].checked);
+          assert.isFalse(checkboxes[1].checked);
+          checkboxes[0].checked = false;
+          checkboxes[1].checked = true;
+          assert.isFalse(checkboxes[0].checked);
+          assert.isTrue(checkboxes[1].checked);
+          form.reset();
+          assert.isTrue(checkboxes[0].checked);
+          assert.isFalse(checkboxes[1].checked);
+        }
       });
 
       test('de form getters worden correct gedelegeerd', () => {
-        const checkbox = fixture('vl-checkbox-fixture');
-        assert.equal(checkbox.form, checkbox._internals.form);
-        assert.equal(checkbox.validity, checkbox._internals.validity);
-        assert.equal(checkbox.validationMessage, checkbox._internals.validationMessage);
-        assert.equal(checkbox.willValidate, checkbox._internals.willValidate);
+        if (hasElementInternalsSupport()) {
+          const checkbox = fixture('vl-checkbox-fixture');
+          assert.equal(checkbox.form, checkbox._internals.form);
+          assert.equal(checkbox.validity, checkbox._internals.validity);
+          assert.equal(checkbox.validationMessage, checkbox._internals.validationMessage);
+          assert.equal(checkbox.willValidate, checkbox._internals.willValidate);
+        }
       });
 
       test('de checkbox kan via de form selector opgevraagd worden', () => {
-        const form = fixture('vl-checkboxes-form-fixture');
-        const checkboxes = form.querySelectorAll('vl-checkbox');
-        assert.equal(form['option-1'], checkboxes[0]);
-        assert.equal(form['option-2'], checkboxes[1]);
+        if (hasElementInternalsSupport()) {
+          const form = fixture('vl-checkboxes-form-fixture');
+          const checkboxes = form.querySelectorAll('vl-checkbox');
+          assert.equal(form['option-1'], checkboxes[0]);
+          assert.equal(form['option-2'], checkboxes[1]);
+        }
       });
 
       test('de checkboxen kunnen via de form selector opgevraagd worden als ze hetzelfde name attribuut delen', () => {
-        const form = fixture('vl-checkboxes-form-identical-names-fixture');
-        const checkboxes = form.querySelectorAll('vl-checkbox');
-        assert.lengthOf(form['options'], checkboxes.length);
+        if (hasElementInternalsSupport()) {
+          const form = fixture('vl-checkboxes-form-identical-names-fixture');
+          const checkboxes = form.querySelectorAll('vl-checkbox');
+          assert.lengthOf(form['options'], checkboxes.length);
+        }
       });
     });
   </script>
