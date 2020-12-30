@@ -328,28 +328,6 @@
           assert.lengthOf(form['options'], checkboxes.length);
         }
       });
-
-      test('bij een reset van het formulier zullen de checkbox waarden hersteld worden', () => {
-        const form = fixture('vl-checkboxes-form-fixture');
-        const checkboxes = form.querySelectorAll('vl-checkbox');
-        assert.isTrue(checkboxes[0].checked);
-        assert.isFalse(checkboxes[1].checked);
-        checkboxes[0].checked = false;
-        checkboxes[1].checked = true;
-        assert.isFalse(checkboxes[0].checked);
-        assert.isTrue(checkboxes[1].checked);
-        form.reset();
-        assert.isTrue(checkboxes[0].checked);
-        assert.isFalse(checkboxes[1].checked);
-      });
-
-      test('de form getters worden correct gedelegeerd', () => {
-        const checkbox = fixture('vl-checkbox-fixture');
-        assert.equal(checkbox.form, checkbox._internals.form);
-        assert.equal(checkbox.validity, checkbox._internals.validity);
-        assert.equal(checkbox.validationMessage, checkbox._internals.validationMessage);
-        assert.equal(checkbox.willValidate, checkbox._internals.willValidate);
-      });
     });
   </script>
 </body>
