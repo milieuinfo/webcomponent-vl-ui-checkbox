@@ -9,7 +9,7 @@ class VlCheckbox extends VlElement {
   }
 
   async getLabel() {
-    const label = await this._getLabelSlot();
+    const label = await this._getLabelElement();
     return label.getText();
   }
 
@@ -52,9 +52,9 @@ class VlCheckbox extends VlElement {
     }
   }
 
-  async _getLabelSlot() {
+  async _getLabelElement() {
     const label = await this._getLabel();
-    return label.findElement(By.css('slot'));
+    return label.findElement(By.css('span'));
   }
 
   async _getInput() {
