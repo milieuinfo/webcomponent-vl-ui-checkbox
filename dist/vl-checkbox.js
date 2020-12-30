@@ -24,11 +24,11 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   static get _observedAttributes() {
-    return ['label', 'value', 'checked'];
+    return ['label', 'value', 'checked', 'switch'];
   }
 
   static get _observedChildClassAttributes() {
-    return ['block', 'single', 'disabled', 'error', 'switch'];
+    return ['block', 'single', 'disabled', 'error'];
   }
 
   constructor() {
@@ -36,23 +36,39 @@ export class VlCheckbox extends vlElement(HTMLElement) {
       <style>
         @import '/node_modules/vl-ui-checkbox/dist/style.css';
       </style>
-
-      <label id="label" class="vl-checkbox" for="checkbox">
-        <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
-        <div class="vl-checkbox__label">
-          <i class="vl-checkbox__box" aria-hidden="true"></i>
-          <span>
-            <slot></slot>
-          </span>
-        </div>
-      </label>
     `);
-    this._internals = this.attachInternals();
+
+    if (this.dataset.vlSwitch !== undefined) {
+      this._shadow.append(this._template(`
+        <div class="vl-checkbox--switch__wrapper">
+          <input class="vl-checkbox--switch" type="checkbox" id="checkbox" name="checkbox" value="1" />
+          <label class="vl-checkbox--switch__label" for="checkbox">
+            <span aria-hidden="true"></span>
+            <span class="vl-u-visually-hidden">
+              <slot></slot>
+            </span>
+          </label>
+        </div>
+      `));
+    } else {
+      this._shadow.append(this._template(`
+        <label id="label" class="vl-checkbox" for="checkbox">
+          <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
+          <div class="vl-checkbox__label">
+            <i class="vl-checkbox__box" aria-hidden="true"></i>
+            <span>
+              <slot></slot>
+            </span>
+          </div>
+        </label>
+      `));
+    }
   }
 
   connectedCallback() {
     this._inputElement.onchange = this._toggle;
     this._inputElement.oninput = (event) => event.stopPropagation();
+    this._registerChangeEvent();
   }
 
   formResetCallback() {
@@ -196,6 +212,10 @@ export class VlCheckbox extends vlElement(HTMLElement) {
 
   _removeNode(node) {
     node.remove();
+  }
+
+  _registerChangeEvent() {
+    this._inputElement.addEventListener('change', () => this.dispatchEvent(new Event('change')));
   }
 }
 

@@ -9,8 +9,9 @@ import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
  * @mixesvlElement
  *
  * @property {boolean} data-vl-block - Attribuut wordt gebruikt om ervoor te zorgen dat de checkbox getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.
- * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
  * @property {boolean} data-vl-disabled - Attribuut wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren.
+ * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
+ * @property {boolean} data-vl-label - Attribuut wordt gebruikt om label te definiëren via een attribuut ter vervanging van een slot element.
  * @property {boolean} data-vl-name - Attribuut wordt gebruikt om checkbox te identificeren.
  * @property {boolean} data-vl-single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
  * @property {boolean} data-vl-switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
@@ -26,11 +27,11 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   static get _observedAttributes() {
-    return ['label', 'name', 'value', 'checked'];
+    return ['label', 'name', 'value', 'checked', 'switch'];
   }
 
   static get _observedChildClassAttributes() {
-    return ['block', 'single', 'disabled', 'error', 'switch'];
+    return ['block', 'single', 'disabled', 'error'];
   }
 
   constructor() {
@@ -38,17 +39,34 @@ export class VlCheckbox extends vlElement(HTMLElement) {
       <style>
         @import '/src/style.css';
       </style>
-
-      <label id="label" class="vl-checkbox" for="checkbox">
-        <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
-        <div class="vl-checkbox__label">
-          <i class="vl-checkbox__box" aria-hidden="true"></i>
-          <span>
-            <slot></slot>
-          </span>
-        </div>
-      </label>
     `);
+
+    if (this.dataset.vlSwitch !== undefined) {
+      this._shadow.append(this._template(`
+        <div class="vl-checkbox--switch__wrapper">
+          <input class="vl-checkbox--switch" type="checkbox" id="checkbox" name="checkbox" value="1" />
+          <label class="vl-checkbox--switch__label" for="checkbox">
+            <span aria-hidden="true"></span>
+            <span class="vl-u-visually-hidden">
+              <slot></slot>
+            </span>
+          </label>
+        </div>
+      `));
+    } else {
+      this._shadow.append(this._template(`
+        <label id="label" class="vl-checkbox" for="checkbox">
+          <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
+          <div class="vl-checkbox__label">
+            <i class="vl-checkbox__box" aria-hidden="true"></i>
+            <span>
+              <slot></slot>
+            </span>
+          </div>
+        </label>
+      `));
+    }
+
     if (this.attachInternals) {
       this._internals = this.attachInternals();
     } else {
@@ -59,6 +77,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   connectedCallback() {
     this._inputElement.onchange = this._toggle;
     this._inputElement.oninput = (event) => event.stopPropagation();
+    this._registerChangeEvent();
   }
 
   /**
@@ -170,7 +189,8 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   _labelChangedCallback(oldValue, newValue) {
-    this._labelSlotElement.textContent = newValue;
+    this._labelSlotElement.remove();
+    this._labelElement.textContent = newValue;
   }
 
   _nameChangedCallback(oldValue, newValue) {
@@ -212,6 +232,10 @@ export class VlCheckbox extends vlElement(HTMLElement) {
 
   _removeNode(node) {
     node.remove();
+  }
+
+  _registerChangeEvent() {
+    this._inputElement.addEventListener('change', () => this.dispatchEvent(new Event('change')));
   }
 }
 

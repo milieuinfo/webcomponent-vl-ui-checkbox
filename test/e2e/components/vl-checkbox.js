@@ -2,8 +2,14 @@ const {VlElement} = require('vl-ui-core').Test;
 const {By} = require('vl-ui-core').Test.Setup;
 
 class VlCheckbox extends VlElement {
-  async getLabel() {
+  async click() {
+    await this.hover();
     const label = await this._getLabel();
+    await this.driver.actions().move({origin: label}).click().perform();
+  }
+
+  async getLabel() {
+    const label = await this._getLabelElement();
     return label.getText();
   }
 
@@ -30,7 +36,7 @@ class VlCheckbox extends VlElement {
   }
 
   async isSwitch() {
-    return this._hasClass('vl-checkbox--switch');
+    return this._hasClass('vl-checkbox--switch__wrapper');
   }
 
   async isDisabled() {
@@ -38,7 +44,17 @@ class VlCheckbox extends VlElement {
   }
 
   async _getLabel() {
-    return this.shadowRoot.findElement(By.css('.vl-checkbox__label slot'));
+    const isSwitch = await this.isSwitch();
+    if (isSwitch) {
+      return this.shadowRoot.findElement(By.css('.vl-checkbox--switch__label'));
+    } else {
+      return this.shadowRoot.findElement(By.css('.vl-checkbox__label'));
+    }
+  }
+
+  async _getLabelElement() {
+    const label = await this._getLabel();
+    return label.findElement(By.css('span'));
   }
 
   async _getInput() {
