@@ -12,16 +12,22 @@ import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
  * @property {boolean} data-vl-disabled - Attribuut wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren.
  * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
  * @property {boolean} data-vl-label - Attribuut wordt gebruikt om label te definiëren via een attribuut ter vervanging van een slot element.
+ * @property {boolean} data-vl-name - Attribuut wordt gebruikt om checkbox te identificeren.
  * @property {boolean} data-vl-single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
  * @property {boolean} data-vl-switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
+ * @property {boolean} data-vl-value - Attribuut wordt gebruikt om de checkbox waarde te bepalen.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-checkbox.html|Demo}
  */
 export class VlCheckbox extends vlElement(HTMLElement) {
+  static get formAssociated() {
+    return true;
+  }
+
   static get _observedAttributes() {
-    return ['label', 'value', 'checked', 'switch'];
+    return ['label', 'name', 'value', 'checked', 'switch'];
   }
 
   static get _observedChildClassAttributes() {
@@ -60,12 +66,61 @@ export class VlCheckbox extends vlElement(HTMLElement) {
         </label>
       `));
     }
+
+    if (this.attachInternals) {
+      this._internals = this.attachInternals();
+    } else {
+      this._internals = null;
+    }
   }
 
   connectedCallback() {
     this._inputElement.onchange = this._toggle;
     this._inputElement.oninput = (event) => event.stopPropagation();
     this._registerChangeEvent();
+  }
+
+  /**
+   * Callback called when the form is reset.
+   */
+  formResetCallback() {
+    this.checked = this.hasAttribute('checked');
+  }
+
+  /**
+   * Returns a reference to the parent <form> element.
+   *
+   * @return {HTMLFormElement}
+   */
+  get form() {
+    return this._internals?.form;
+  }
+
+  /**
+   * Returns the element's current validity state.
+   *
+   * @return {ValidityState}
+   */
+  get validity() {
+    return this._internals?.validity;
+  }
+
+  /**
+   * Returns a localized message that describes the validation constraints that the control does not satisfy (if any). This is the empty string if the control is not a candidate for constraint validation (willvalidate is false), or it satisfies its constraints. This value can be set by the setCustomValidity method.
+   *
+   * @return {string}
+   */
+  get validationMessage() {
+    return this._internals?.validationMessage;
+  }
+
+  /**
+   * Returns whether the element is a candidate for constraint validation.
+   *
+   * @return {boolean}
+   */
+  get willValidate() {
+    return this._internals?.willValidate;
   }
 
   /**
@@ -136,6 +191,13 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   _labelChangedCallback(oldValue, newValue) {
     this._labelSlotElement.remove();
     this._labelElement.textContent = newValue;
+  }
+
+  _nameChangedCallback(oldValue, newValue) {
+    if (this._inputElement.name != newValue) {
+      this._inputElement.name = newValue;
+      this.setAttribute('name', newValue);
+    }
   }
 
   _valueChangedCallback(oldValue, newValue) {
