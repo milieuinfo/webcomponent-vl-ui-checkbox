@@ -9,10 +9,13 @@ import {vlElement, define} from 'vl-ui-core';
  * @mixesvlElement
  *
  * @property {boolean} data-vl-block - Attribuut wordt gebruikt om ervoor te zorgen dat de checkbox getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.
- * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
  * @property {boolean} data-vl-disabled - Attribuut wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren.
+ * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
+ * @property {boolean} data-vl-label - Attribuut wordt gebruikt om label te definiëren via een attribuut ter vervanging van een slot element.
+ * @property {boolean} data-vl-name - Attribuut wordt gebruikt om checkbox te identificeren.
  * @property {boolean} data-vl-single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
  * @property {boolean} data-vl-switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
+ * @property {boolean} data-vl-value - Attribuut wordt gebruikt om de checkbox waarde te bepalen.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-checkbox/issues|Issues}
@@ -24,7 +27,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   static get _observedAttributes() {
-    return ['label', 'value', 'checked', 'switch'];
+    return ['label', 'name', 'value', 'checked', 'switch'];
   }
 
   static get _observedChildClassAttributes() {
@@ -64,6 +67,12 @@ export class VlCheckbox extends vlElement(HTMLElement) {
         </label>
       `));
     }
+
+    if (this.attachInternals) {
+      this._internals = this.attachInternals();
+    } else {
+      this._internals = null;
+    }
   }
 
   connectedCallback() {
@@ -72,6 +81,9 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     this._registerChangeEvent();
   }
 
+  /**
+   * Callback called when the form is reset.
+   */
   formResetCallback() {
     this.checked = this.hasAttribute('checked');
   }
@@ -82,7 +94,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
    * @return {HTMLFormElement}
    */
   get form() {
-    return this._internals.form;
+    return this._internals?.form;
   }
 
   /**
@@ -91,7 +103,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
    * @return {ValidityState}
    */
   get validity() {
-    return this._internals.validity;
+    return this._internals?.validity;
   }
 
   /**
@@ -100,7 +112,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
    * @return {string}
    */
   get validationMessage() {
-    return this._internals.validationMessage;
+    return this._internals?.validationMessage;
   }
 
   /**
@@ -109,7 +121,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
    * @return {boolean}
    */
   get willValidate() {
-    return this._internals.willValidate;
+    return this._internals?.willValidate;
   }
 
   /**
@@ -178,7 +190,15 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   _labelChangedCallback(oldValue, newValue) {
-    this._labelSlotElement.textContent = newValue;
+    this._labelSlotElement.remove();
+    this._labelElement.textContent = newValue;
+  }
+
+  _nameChangedCallback(oldValue, newValue) {
+    if (this._inputElement.name != newValue) {
+      this._inputElement.name = newValue;
+      this.setAttribute('name', newValue);
+    }
   }
 
   _valueChangedCallback(oldValue, newValue) {
