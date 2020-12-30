@@ -9,8 +9,9 @@ import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
  * @mixesvlElement
  *
  * @property {boolean} data-vl-block - Attribuut wordt gebruikt om ervoor te zorgen dat de checkbox getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.
- * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
  * @property {boolean} data-vl-disabled - Attribuut wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren.
+ * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
+ * @property {boolean} data-vl-label - Attribuut wordt gebruikt om label te definiëren via een attribuut ter vervanging van een slot element.
  * @property {boolean} data-vl-single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
  * @property {boolean} data-vl-switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
  *
@@ -133,7 +134,8 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   _labelChangedCallback(oldValue, newValue) {
-    this._labelSlotElement.textContent = newValue;
+    this._labelSlotElement.remove();
+    this._labelElement.textContent = newValue;
   }
 
   _valueChangedCallback(oldValue, newValue) {
