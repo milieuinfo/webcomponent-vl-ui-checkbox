@@ -10,6 +10,10 @@ describe('vl-checkbox', async () => {
     return vlCheckboxPage.load();
   });
 
+  it('WCAG', async () => {
+    await assert.eventually.isFalse(vlCheckboxPage.hasWcagIssues());
+  });
+
   it('als gebruiker kan ik een standaard checkbox aan- en uitvinken', async () => {
     const checkbox = await vlCheckboxPage.getDefaultCheckbox(1);
     await canInteractWithCheckbox(checkbox);
