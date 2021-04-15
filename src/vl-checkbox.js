@@ -44,8 +44,8 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     if (this.dataset.vlSwitch !== undefined) {
       this._shadow.append(this._template(`
         <div class="vl-checkbox--switch__wrapper">
-          <input class="vl-checkbox--switch" type="checkbox" id="checkbox" name="checkbox" value="1" />
-          <label class="vl-checkbox--switch__label" for="checkbox">
+          <input class="vl-checkbox--switch" type="checkbox" id="checkbox" name="checkbox" value="1" aria-label="${this.dataset.vlLabel}">
+          <label class="vl-checkbox--switch__label">
             <span aria-hidden="true"></span>
             <span class="vl-u-visually-hidden">
               <slot></slot>
