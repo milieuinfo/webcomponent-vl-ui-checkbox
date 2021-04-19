@@ -101,11 +101,11 @@ describe('vl-checkbox', async () => {
     await assert.eventually.equal(labelSlotElements[0].getText(), 'Optie 1');
   });
 
-  async function canInteractWithCheckbox(checkbox) {
+  const canInteractWithCheckbox = async (checkbox) => {
     const initialState = await checkbox.isChecked();
     await checkbox.click();
     await assert.eventually.equal(checkbox.isChecked(), !initialState);
     await checkbox.click();
     await assert.eventually.equal(checkbox.isChecked(), initialState);
-  }
+  };
 });

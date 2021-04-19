@@ -251,15 +251,15 @@
       test('label kan via attribuut of slot gedefinieerd worden', () => {
         const checkboxes = fixture('vl-checkboxes-slot-fixture');
         assert.equal(checkboxes[0]._labelElement.innerText, checkboxes[0].getAttribute('label'));
-        assert.equal(checkboxes[1]._labelElement.innerText, checkboxes[1].getAttribute('label'));
+        assert.equal(checkboxes[2]._labelElement.querySelector('slot').assignedElements()[0].innerText, checkboxes[1].children[0].innerText);
         assert.equal(checkboxes[2]._labelElement.querySelector('slot').assignedElements()[0], checkboxes[2].children[0]);
       });
 
-      test('het label attribuut krijgt voorrang op het slot element', () => {
+      test('het slot element krijgt voorrang op het label attribuut', () => {
         const checkboxes = fixture('vl-checkboxes-slot-fixture');
         assert.equal(checkboxes[0]._labelElement.innerText, checkboxes[0].getAttribute('label'));
-        assert.equal(checkboxes[1]._labelElement.innerText, checkboxes[1].getAttribute('label'));
-        assert.notEqual(checkboxes[1]._labelElement.innerText, checkboxes[2].querySelector('span').innerText);
+        assert.notEqual(checkboxes[1]._labelElement.querySelector('slot').assignedElements()[0].innerText, checkboxes[1].getAttribute('label'));
+        assert.equal(checkboxes[1]._labelElement.querySelector('slot').assignedElements()[0].innerText, checkboxes[2].querySelector('span').innerText);
       });
 
       test('de checked waarde kan programmatisch gezet worden', () => {

@@ -17,3 +17,10 @@
 // Util
 // ==========================================================================
 @import "vl-ui-util/src/scss/util";
+
+.vl-checkbox--switch {
+    &__wrapper .vl-checkbox__label {
+        display: inline;
+        flex: none;
+    }
+}

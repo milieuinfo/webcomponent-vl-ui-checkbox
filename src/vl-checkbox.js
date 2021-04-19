@@ -44,12 +44,12 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     if (this.dataset.vlSwitch !== undefined) {
       this._shadow.append(this._template(`
         <div class="vl-checkbox--switch__wrapper">
-          <input class="vl-checkbox--switch" type="checkbox" id="checkbox" name="checkbox" value="1" aria-label="${this.dataset.vlLabel}">
-          <label class="vl-checkbox--switch__label">
+          <input class="vl-checkbox--switch" type="checkbox" id="checkbox" name="checkbox" value="1">
+          <span class="vl-checkbox--switch__label">
             <span aria-hidden="true"></span>
-            <span class="vl-u-visually-hidden">
-              <slot></slot>
-            </span>
+          </span>
+          <label class="vl-checkbox__label" for="checkbox">
+            <slot>Switch</slot>
           </label>
         </div>
       `));
@@ -189,8 +189,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   _labelChangedCallback(oldValue, newValue) {
-    this._labelSlotElement.remove();
-    this._labelElement.textContent = newValue;
+    this._labelSlotElement.textContent = newValue;
   }
 
   _nameChangedCallback(oldValue, newValue) {
