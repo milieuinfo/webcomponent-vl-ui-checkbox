@@ -66,6 +66,10 @@
         return checkbox._internals != undefined;
       };
 
+      setup((done) => {
+        customElements.whenDefined('vl-checkbox').then(() => done());
+      });
+
       test('krijgt de juiste class wanneer de knop een attribuut bevat', () => {
         const checkbox = fixture('vl-checkbox-fixture');
         const checkboxLabel = checkbox.shadowRoot.querySelector('.vl-checkbox');
