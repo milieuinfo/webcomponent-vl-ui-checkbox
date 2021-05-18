@@ -40,7 +40,15 @@
             </vl-demo>
     
             <vl-demo data-vl-title="Checkbox switch">
-                <vl-checkbox id="checkbox-switch" data-vl-switch></vl-checkbox>
+                <vl-checkbox id="checkbox-switch" data-vl-label="Instellingen blokkeren" data-vl-switch data-vl-single></vl-checkbox>
+            </vl-demo>
+    
+            <vl-demo data-vl-title="Checkbox switch disabled">
+                <vl-checkbox id="checkbox-switch-disabled" data-vl-label="Instellingen blokkeren" data-vl-switch data-vl-disabled data-vl-single></vl-checkbox>
+            </vl-demo>
+    
+            <vl-demo data-vl-title="Checkbox switch met label">
+                <vl-checkbox id="checkbox-switch-label" data-vl-switch data-vl-label="Instellingen blokkeren"></vl-checkbox>
             </vl-demo>
     
             <vl-demo data-vl-title="Checkboxes multiple">
@@ -56,8 +64,11 @@
             </vl-demo>
     
             <vl-demo data-vl-title="Checkbox met slot element">
-                <vl-checkbox id="checkbox-slot-1" data-vl-value="1">
+                <vl-checkbox id="checkbox-slot" data-vl-value="1">
                     <span>Optie <strong>1</strong></span>
+                </vl-checkbox>
+                <vl-checkbox id="checkbox-slot-switch" data-vl-switch>
+                    <span>Optie <strong>2</strong></span>
                 </vl-checkbox>
             </vl-demo>
         </vl-demo-page>
