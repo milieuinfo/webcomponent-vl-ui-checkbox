@@ -45,9 +45,11 @@ export class VlCheckbox extends vlElement(HTMLElement) {
       this._shadow.append(this._template(`
         <div class="vl-checkbox--switch__wrapper">
           <input class="vl-checkbox--switch" type="checkbox" id="checkbox" name="checkbox" value="1" />
-          <label class="vl-checkbox--switch__label" for="checkbox">
-            <span aria-hidden="true"></span>
-            <span class="vl-u-visually-hidden">
+          <label class="vl-checkbox__label" for="checkbox">
+            <span class="vl-checkbox--switch__label">
+              <span aria-hidden="true"></span>
+            </span>
+            <span>
               <slot></slot>
             </span>
           </label>
@@ -163,7 +165,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   get _labelElement() {
-    return this._element.querySelector('.vl-checkbox__label span');
+    return this._element.querySelector('.vl-checkbox__label > span:not(.vl-checkbox--switch__label)');
   }
 
   get _labelSlotElement() {

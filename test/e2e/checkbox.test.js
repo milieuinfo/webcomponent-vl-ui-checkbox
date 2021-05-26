@@ -20,6 +20,11 @@ describe('vl-checkbox', async () => {
     await assert.eventually.equal(checkbox.getLabel(), 'Optie 1');
   });
 
+  it('als gebruiker zie ik een label bij de checkbox switch variant', async () => {
+    const checkbox = await vlCheckboxPage.getCheckboxSwitchLabel();
+    await assert.eventually.equal(checkbox.getLabel(), 'Instellingen blokkeren');
+  });
+
   it('als gebruiker kan ik het verschil zien tussen een block en een gewone checkbox', async () => {
     const checkbox = await vlCheckboxPage.getDefaultCheckbox(1);
     const blockCheckbox = await vlCheckboxPage.getCheckboxBlock();
@@ -50,6 +55,15 @@ describe('vl-checkbox', async () => {
     await assert.eventually.isTrue(checkboxChecked.isChecked());
     await checkboxChecked.click();
     await assert.eventually.isTrue(checkboxChecked.isChecked());
+  });
+
+  it('als gebruiker kan ik een switch disabled checkbox niet aan- of uitvinken', async () => {
+    const switchCheckbox = await vlCheckboxPage.getCheckboxSwitchDisabled();
+
+    await assert.eventually.isTrue(switchCheckbox.isDisabled());
+    await assert.eventually.isFalse(switchCheckbox.isChecked());
+    await switchCheckbox.click();
+    await assert.eventually.isFalse(switchCheckbox.isChecked());
   });
 
   it('als gebruiker kan ik het verschil zien tussen een single en een gewone checkbox', async () => {
@@ -93,15 +107,18 @@ describe('vl-checkbox', async () => {
 
   it('als gebruiker zie ik een label bij een checkbox die gebruik maakt van een slot element', async () => {
     const checkbox = await vlCheckboxPage.getCheckboxSlot();
+    const switchCheckbox = await vlCheckboxPage.getCheckboxSlotSwitch();
     const labelSlotElements = await checkbox.getLabelSlotElements();
+    const labelSlotElementsSwitch = await switchCheckbox.getLabelSlotElements();
     await assert.eventually.equal(labelSlotElements[0].getText(), 'Optie 1');
+    await assert.eventually.equal(labelSlotElementsSwitch[0].getText(), 'Optie 2');
   });
 
-  async function canInteractWithCheckbox(checkbox) {
+  const canInteractWithCheckbox = async (checkbox) => {
     const initialState = await checkbox.isChecked();
     await checkbox.click();
     await assert.eventually.equal(checkbox.isChecked(), !initialState);
     await checkbox.click();
     await assert.eventually.equal(checkbox.isChecked(), initialState);
-  }
+  };
 });
