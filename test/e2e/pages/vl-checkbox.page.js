@@ -34,6 +34,14 @@ class VlCheckboxPage extends Page {
     return this._getCheckbox('#checkbox-switch');
   }
 
+  async getCheckboxSwitchDisabled() {
+    return this._getCheckbox('#checkbox-switch-disabled');
+  }
+
+  async getCheckboxSwitchLabel() {
+    return this._getCheckbox('#checkbox-switch-label');
+  }
+
   async getCheckboxMulti(number) {
     return this._getCheckbox(`#checkbox-multi-${number}`);
   }
@@ -43,7 +51,11 @@ class VlCheckboxPage extends Page {
   }
 
   async getCheckboxSlot() {
-    return this._getCheckbox('#checkbox-slot-1');
+    return this._getCheckbox('#checkbox-slot');
+  }
+
+  async getCheckboxSlotSwitch() {
+    return this._getCheckbox('#checkbox-slot-switch');
   }
 
   async load() {
