@@ -1,4 +1,4 @@
-import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
+import { vlElement, define } from '/node_modules/vl-ui-core/dist/vl-core.js';
 
 /**
  * VlCheckbox
@@ -42,7 +42,8 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     `);
 
     if (this.dataset.vlSwitch !== undefined) {
-      this._shadow.append(this._template(`
+      this._shadow.append(
+        this._template(`
         <div class="vl-checkbox--switch__wrapper">
           <input class="vl-checkbox--switch" type="checkbox" id="checkbox" name="checkbox" value="1" />
           <label class="vl-checkbox__label" for="checkbox">
@@ -54,9 +55,11 @@ export class VlCheckbox extends vlElement(HTMLElement) {
             </span>
           </label>
         </div>
-      `));
+      `),
+      );
     } else {
-      this._shadow.append(this._template(`
+      this._shadow.append(
+        this._template(`
         <label id="label" class="vl-checkbox" for="checkbox">
           <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
           <div class="vl-checkbox__label">
@@ -66,7 +69,8 @@ export class VlCheckbox extends vlElement(HTMLElement) {
             </span>
           </div>
         </label>
-      `));
+      `),
+      );
     }
 
     if (this.attachInternals) {
@@ -168,10 +172,6 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     return this._element.querySelector('.vl-checkbox__label > span:not(.vl-checkbox--switch__label)');
   }
 
-  get _labelSlotElement() {
-    return this._element.querySelector('slot');
-  }
-
   _toggle() {
     let checked;
     const parent = this.getRootNode().host;
@@ -187,11 +187,11 @@ export class VlCheckbox extends vlElement(HTMLElement) {
     } else {
       checked = this.checked;
     }
-    parent.dispatchEvent(new CustomEvent('input', {detail: this.checked, bubbles: true, composed: true}));
+    parent.dispatchEvent(new CustomEvent('input', { detail: this.checked, bubbles: true, composed: true }));
   }
 
   _labelChangedCallback(oldValue, newValue) {
-    this._labelSlotElement.remove();
+    console.log(newValue);
     this._labelElement.textContent = newValue;
   }
 
