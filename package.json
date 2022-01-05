@@ -43,7 +43,7 @@
     "vl-ui-core": "^7.2.3"
   },
   "devDependencies": {
-    "@govflanders/vl-ui-checkbox": "^3.12.23",
+    "@govflanders/vl-ui-checkbox": "^10.0.0",
     "@govflanders/vl-ui-core": "^4.1.23",
     "@govflanders/vl-ui-form-message": "^3.12.23",
     "@govflanders/vl-ui-form-structure": "^3.12.23",
